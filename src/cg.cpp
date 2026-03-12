@@ -60,7 +60,7 @@ void spmv(double alpha, ParMat& A, std::vector<double>& x,
                   &(A.send_comm.req[i]));
     }
 
-    spmv(1.0, A.on_proc, x, 0.0, b);
+    spmv(alpha, A.on_proc, x, beta, b);
 
     if (A.recv_comm.n_msgs)
     {
@@ -72,7 +72,7 @@ void spmv(double alpha, ParMat& A, std::vector<double>& x,
         MPI_Waitall(A.send_comm.n_msgs, A.send_comm.req.data(), MPI_STATUSES_IGNORE);
     }
 
-    spmv(1.0, A.off_proc, recvbuf, 1.0, b);
+    spmv(alpha, A.off_proc, recvbuf, 1.0, b);
 
 }
 
@@ -202,14 +202,12 @@ int main(int argc, char* argv[])
         iter++;
     }
 
-    if (iter == max_iter)
+    if (rank == 0) 
     {
-        printf("Max Iterations Reached.\n");
-        printf("2 Norm of Residual: %lg\n\n", norm_r);
-    }
-    else
-    {
-        printf("%d Iteration required to converge\n", iter);
+        if (iter == max_iter)
+            printf("Max Iterations Reached.\n");
+        else
+            printf("%d Iteration required to converge\n", iter);
         printf("2 Norm of Residual: %lg\n\n", norm_r);
     }
 

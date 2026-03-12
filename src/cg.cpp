@@ -92,7 +92,7 @@ double inner_product(std::vector<double> a, std::vector<double> b)
 void axpy(double alpha, std::vector<double>& x, std::vector<double>& y)
 {
     for (int i = 0; i < x.size(); i++)
-        x[i] = alpha*x[i] + y[i];
+        x[i] = x[i] + alpha*y[i];
 }
 
 void scale(double alpha, std::vector<double>& x)

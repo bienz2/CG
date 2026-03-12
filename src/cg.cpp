@@ -1,5 +1,6 @@
 #include "sparse_mat.hpp"
 #include "par_binary_IO.hpp"
+#include "locality_aware.h"
 
 // Serial SpMV b = alpha*A*x + beta*b
 void spmv(double alpha, Mat& A, std::vector<double>& x,
@@ -76,19 +77,6 @@ void spmv(double alpha, ParMat& A, std::vector<double>& x,
 
 }
 
-double inner_product(std::vector<double> a, std::vector<double> b)
-{
-    double sum, sum_local;
-
-    sum_local = 0;
-    for (int i = 0; i < a.size(); i++)
-        sum_local += a[i] * b[i];
-
-    MPI_Allreduce(&sum_local, &sum, 1, MPI_DOUBLE, MPI_SUM, MPI_COMM_WORLD);
-
-    return sum;
-}
-
 void axpy(double alpha, std::vector<double>& x, std::vector<double>& y)
 {
     for (int i = 0; i < x.size(); i++)
@@ -133,6 +121,16 @@ int main(int argc, char* argv[])
     std::vector<double> p(A.local_rows);
     std::vector<double> Ap(A.local_rows);
 
+    // Setup persistent allreduces
+    double local_sum, global_sum;
+    MPIL_Request* mpil_req;
+    MPIL_Comm* mpil_comm;
+    MPIL_Comm_init(&mpil_comm, MPI_COMM_WORLD);
+    MPIL_Info* mpil_info;
+    MPIL_Info_init(&mpil_info);
+    MPIL_Allreduce_init(&local_sum, &global_sum, 1, MPI_DOUBLE,
+           MPI_SUM, mpil_comm, mpil_info, &mpil_req); 
+
     int iter, recompute_r;
     double alpha, beta;
     double rr_inner, next_inner, App_inner;
@@ -147,7 +145,13 @@ int main(int argc, char* argv[])
     p = r;
 
     // Find initial (r, r) and residual
-    rr_inner = inner_product(r, r);
+    local_sum = 0;
+    for (int i = 0; i < r.size(); i++)
+        local_sum += r[i] * r[i];
+    MPIL_Start(mpil_req);
+    MPIL_Wait(mpil_req, MPI_STATUS_IGNORE);
+    rr_inner = global_sum;
+
     norm_r = sqrt(rr_inner);
     res.push_back(norm_r);
 
@@ -166,7 +170,12 @@ int main(int argc, char* argv[])
     {
         // alpha_i = (r_i, r_i) / (A*p_i, p_i)
         spmv(1.0, A, p, 0.0, Ap);
-        App_inner = inner_product(Ap, p);
+        local_sum = 0;
+        for (int i = 0; i < Ap.size(); i++)
+            local_sum += Ap[i] * p[i];
+        MPIL_Start(mpil_req);
+        MPIL_Wait(mpil_req, MPI_STATUS_IGNORE);
+        App_inner = global_sum;
         if (App_inner < 0.0)
         {
             printf("Indefinite matrix detected in CG! Aborting...\n");
@@ -187,7 +196,12 @@ int main(int argc, char* argv[])
             spmv(-1.0, A, x, 1.0, r);
         }
 
-        next_inner = inner_product(r, r);
+        local_sum = 0;
+        for (int i = 0; i < r.size(); i++)
+            local_sum += r[i] * r[i];
+        MPIL_Start(mpil_req);
+        MPIL_Wait(mpil_req, MPI_STATUS_IGNORE);
+        next_inner = global_sum;
         beta = next_inner / rr_inner;
 
         scale(beta, p);
@@ -210,6 +224,11 @@ int main(int argc, char* argv[])
             printf("%d Iteration required to converge\n", iter);
         printf("2 Norm of Residual: %lg\n\n", norm_r);
     }
+
+
+    MPIL_Request_free(&mpil_req);
+    MPIL_Info_free(&mpil_info);
+    MPIL_Comm_free(&mpil_comm);
 
     MPI_Finalize();
 }

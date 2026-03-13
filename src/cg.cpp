@@ -89,7 +89,7 @@ void scale(double alpha, std::vector<double>& x)
         x[i] = alpha*x[i];
 }
 
-void CG_persistent(ParMat& A, std::vector<double>& x, std::vector<double>& b)
+int CG_persistent(ParMat& A, std::vector<double>& x, std::vector<double>& b)
 {
     int rank, num_procs;
     MPI_Comm_rank(MPI_COMM_WORLD, &rank);
@@ -196,22 +196,14 @@ void CG_persistent(ParMat& A, std::vector<double>& x, std::vector<double>& b)
         iter++;
     }
 
-    if (rank == 0) 
-    {
-        if (iter == max_iter)
-            printf("Max Iterations Reached.\n");
-        else
-            printf("%d Iteration required to converge\n", iter);
-        printf("2 Norm of Residual: %lg\n\n", norm_r);
-    }
-
-
     MPIL_Request_free(&mpil_req);
     MPIL_Info_free(&mpil_info);
     MPIL_Comm_free(&mpil_comm);
+
+    return iter;
 }
 
-void CG(ParMat& A, std::vector<double>& x, std::vector<double>& b)
+int CG(ParMat& A, std::vector<double>& x, std::vector<double>& b)
 {
     int rank, num_procs;
     MPI_Comm_rank(MPI_COMM_WORLD, &rank);
@@ -315,18 +307,9 @@ void CG(ParMat& A, std::vector<double>& x, std::vector<double>& b)
         iter++;
     }
 
-    if (rank == 0) 
-    {
-        if (iter == max_iter)
-            printf("Max Iterations Reached.\n");
-        else
-            printf("%d Iteration required to converge\n", iter);
-        printf("2 Norm of Residual: %lg\n\n", norm_r);
-    }
-
-
     MPIL_Comm_free(&mpil_comm);
 
+    return iter;
 }
 
 
@@ -357,6 +340,246 @@ int main(int argc, char* argv[])
     std::generate(x.begin(), x.end(), 
             [&](){ return (double)(rand()) / RAND_MAX; });
     spmv(1.0, A, x, 0.0, b);
+
+    int conv_iter;
+    std::vector<double> r;
+    double sum;
+    double norm_b;
+    norm_b = 0;
+    for (int i = 0; i < b.size(); i++)
+        norm_b += b[i] * b[i];
+    MPI_Allreduce(MPI_IN_PLACE, &norm_b, 1, MPI_DOUBLE, MPI_SUM,
+            MPI_COMM_WORLD);
+    norm_b = sqrt(norm_b);
+
+    /********* Test for Correctness  ***************/
+    // PMPI
+    MPIL_Set_allreduce_algorithm(ALLREDUCE_PMPI);
+    std::fill(x.begin(), x.end(), 0);
+    conv_iter = CG(A, x, b);
+    r = b;
+    spmv(-1.0, A, x, 1.0, r);
+    sum = 0;
+    for (int i = 0; i < r.size(); i++)
+        sum += r[i] * r[i];
+    MPI_Allreduce(MPI_IN_PLACE, &sum, 1, MPI_DOUBLE, MPI_SUM,
+            MPI_COMM_WORLD);
+    if (rank == 0) printf("CG + PMPI: %d iter, norm %e\n", 
+            conv_iter, sqrt(sum) / norm_b);
+
+    // Recursive Doubling
+    MPIL_Set_allreduce_algorithm(ALLREDUCE_RECURSIVE_DOUBLING);
+    std::fill(x.begin(), x.end(), 0);
+    conv_iter = CG(A, x, b);
+    r = b;
+    spmv(-1.0, A, x, 1.0, r);
+    sum = 0;
+    for (int i = 0; i < r.size(); i++)
+        sum += r[i] * r[i];
+    MPI_Allreduce(MPI_IN_PLACE, &sum, 1, MPI_DOUBLE, MPI_SUM,
+            MPI_COMM_WORLD);
+    if (rank == 0) printf("CG + MPIL RD: %d iter, norm %e\n", 
+            conv_iter, sqrt(sum) / norm_b);
+
+    // Dissemination Node-Aware 
+    MPIL_Set_allreduce_algorithm(ALLREDUCE_DISSEMINATION_LOC);
+    std::fill(x.begin(), x.end(), 0);
+    conv_iter = CG(A, x, b);
+    r = b;
+    spmv(-1.0, A, x, 1.0, r);
+    sum = 0;
+    for (int i = 0; i < r.size(); i++)
+        sum += r[i] * r[i];
+    MPI_Allreduce(MPI_IN_PLACE, &sum, 1, MPI_DOUBLE, MPI_SUM,
+            MPI_COMM_WORLD);
+    if (rank == 0) printf("CG + MPIL NA: %d iter, norm %e\n", 
+            conv_iter, sqrt(sum) / norm_b);
+
+    // Dissemination Locality-Aware 
+    MPIL_Set_allreduce_algorithm(ALLREDUCE_DISSEMINATION_ML);
+    std::fill(x.begin(), x.end(), 0);
+    conv_iter = CG(A, x, b);
+    r = b;
+    spmv(-1.0, A, x, 1.0, r);
+    sum = 0;
+    for (int i = 0; i < r.size(); i++)
+        sum += r[i] * r[i];
+    MPI_Allreduce(MPI_IN_PLACE, &sum, 1, MPI_DOUBLE, MPI_SUM,
+            MPI_COMM_WORLD);
+    if (rank == 0) printf("CG + MPIL LA: %d iter, norm %e\n", 
+            conv_iter, sqrt(sum) / norm_b);
+
+    // Dissemination High-Radix 
+    MPIL_Set_allreduce_algorithm(ALLREDUCE_DISSEMINATION_RADIX);
+    std::fill(x.begin(), x.end(), 0);
+    conv_iter = CG(A, x, b);
+    r = b;
+    spmv(-1.0, A, x, 1.0, r);
+    sum = 0;
+    for (int i = 0; i < r.size(); i++)
+        sum += r[i] * r[i];
+    MPI_Allreduce(MPI_IN_PLACE, &sum, 1, MPI_DOUBLE, MPI_SUM,
+            MPI_COMM_WORLD);
+    if (rank == 0) printf("CG + MPIL Radix: %d iter, norm %e\n", 
+            conv_iter, sqrt(sum) / norm_b);
+
+    // RMA
+    MPIL_Set_allreduce_algorithm(ALLREDUCE_RMA);
+    std::fill(x.begin(), x.end(), 0);
+    conv_iter = CG(A, x, b);
+    r = b;
+    spmv(-1.0, A, x, 1.0, r);
+    sum = 0;
+    for (int i = 0; i < r.size(); i++)
+        sum += r[i] * r[i];
+    MPI_Allreduce(MPI_IN_PLACE, &sum, 1, MPI_DOUBLE, MPI_SUM,
+            MPI_COMM_WORLD);
+    if (rank == 0) printf("CG + MPIL RMA: %d iter, norm %e\n", 
+            conv_iter, sqrt(sum) / norm_b);
+
+    // Persistent Recursive Doubling
+    MPIL_Set_allreduce_init_algorithm(ALLREDUCE_RECURSIVE_DOUBLING);
+    std::fill(x.begin(), x.end(), 0);
+    conv_iter = CG_persistent(A, x, b);
+    r = b;
+    spmv(-1.0, A, x, 1.0, r);
+    sum = 0;
+    for (int i = 0; i < r.size(); i++)
+        sum += r[i] * r[i];
+    MPI_Allreduce(MPI_IN_PLACE, &sum, 1, MPI_DOUBLE, MPI_SUM,
+            MPI_COMM_WORLD);
+    if (rank == 0) printf("CG + MPIL Persistent RD: %d iter, norm %e\n", 
+            conv_iter, sqrt(sum) / norm_b);
+
+    // Persistent Dissemination Node-Aware 
+    MPIL_Set_allreduce_init_algorithm(ALLREDUCE_DISSEMINATION_LOC);
+    std::fill(x.begin(), x.end(), 0);
+    conv_iter = CG_persistent(A, x, b);
+    r = b;
+    spmv(-1.0, A, x, 1.0, r);
+    sum = 0;
+    for (int i = 0; i < r.size(); i++)
+        sum += r[i] * r[i];
+    MPI_Allreduce(MPI_IN_PLACE, &sum, 1, MPI_DOUBLE, MPI_SUM,
+            MPI_COMM_WORLD);
+    if (rank == 0) printf("CG + MPIL Persistent NA: %d iter, norm %e\n", 
+            conv_iter, sqrt(sum) / norm_b);
+
+    // Persistent Dissemination Locality-Aware 
+    MPIL_Set_allreduce_init_algorithm(ALLREDUCE_DISSEMINATION_ML);
+    std::fill(x.begin(), x.end(), 0);
+    conv_iter = CG_persistent(A, x, b);
+    r = b;
+    spmv(-1.0, A, x, 1.0, r);
+    sum = 0;
+    for (int i = 0; i < r.size(); i++)
+        sum += r[i] * r[i];
+    MPI_Allreduce(MPI_IN_PLACE, &sum, 1, MPI_DOUBLE, MPI_SUM,
+            MPI_COMM_WORLD);
+    if (rank == 0) printf("CG + MPIL Persistent LA: %d iter, norm %e\n", 
+            conv_iter, sqrt(sum) / norm_b);
+
+    // Persistent Dissemination High-Radix 
+    MPIL_Set_allreduce_init_algorithm(ALLREDUCE_DISSEMINATION_RADIX);
+    std::fill(x.begin(), x.end(), 0);
+    conv_iter = CG_persistent(A, x, b);
+    r = b;
+    spmv(-1.0, A, x, 1.0, r);
+    sum = 0;
+    for (int i = 0; i < r.size(); i++)
+        sum += r[i] * r[i];
+    MPI_Allreduce(MPI_IN_PLACE, &sum, 1, MPI_DOUBLE, MPI_SUM,
+            MPI_COMM_WORLD);
+    if (rank == 0) printf("CG + MPIL Persistent Radix: %d iter, norm %e\n", 
+            conv_iter, sqrt(sum) / norm_b);
+
+    // Persistent RMA
+    MPIL_Set_allreduce_init_algorithm(ALLREDUCE_RMA);
+    std::fill(x.begin(), x.end(), 0);
+    conv_iter = CG_persistent(A, x, b);
+    r = b;
+    spmv(-1.0, A, x, 1.0, r);
+    sum = 0;
+    for (int i = 0; i < r.size(); i++)
+        sum += r[i] * r[i];
+    MPI_Allreduce(MPI_IN_PLACE, &sum, 1, MPI_DOUBLE, MPI_SUM,
+            MPI_COMM_WORLD);
+    if (rank == 0) printf("CG + MPIL Persistent RMA: %d iter, norm %e\n", 
+            conv_iter, sqrt(sum) / norm_b);
+
+    // Persistent RMA Early Bird
+    MPIL_Set_allreduce_init_algorithm(ALLREDUCE_RMA_EARLYBIRD);
+    std::fill(x.begin(), x.end(), 0);
+    conv_iter = CG_persistent(A, x, b);
+    r = b;
+    spmv(-1.0, A, x, 1.0, r);
+    sum = 0;
+    for (int i = 0; i < r.size(); i++)
+        sum += r[i] * r[i];
+    MPI_Allreduce(MPI_IN_PLACE, &sum, 1, MPI_DOUBLE, MPI_SUM,
+            MPI_COMM_WORLD);
+    if (rank == 0) printf("CG + MPIL Persistent RMA EarlyBird: %d iter, norm %e\n", 
+            conv_iter, sqrt(sum) / norm_b);
+
+    // Persistent RMA Hierarchical
+    MPIL_Set_allreduce_init_algorithm(ALLREDUCE_RMA_HIERARCHICAL);
+    std::fill(x.begin(), x.end(), 0);
+    conv_iter = CG_persistent(A, x, b);
+    r = b;
+    spmv(-1.0, A, x, 1.0, r);
+    sum = 0;
+    for (int i = 0; i < r.size(); i++)
+        sum += r[i] * r[i];
+    MPI_Allreduce(MPI_IN_PLACE, &sum, 1, MPI_DOUBLE, MPI_SUM,
+            MPI_COMM_WORLD);
+    if (rank == 0) printf("CG + MPIL Persistent RMA Hier: %d iter, norm %e\n", 
+            conv_iter, sqrt(sum) / norm_b);
+
+        // Persistent RMA Hierarchical Early Bird
+    MPIL_Set_allreduce_init_algorithm(ALLREDUCE_RMA_HIERARCHICAL_EARLYBIRD);
+    std::fill(x.begin(), x.end(), 0);
+    conv_iter = CG_persistent(A, x, b);
+    r = b;
+    spmv(-1.0, A, x, 1.0, r);
+    sum = 0;
+    for (int i = 0; i < r.size(); i++)
+        sum += r[i] * r[i];
+    MPI_Allreduce(MPI_IN_PLACE, &sum, 1, MPI_DOUBLE, MPI_SUM,
+            MPI_COMM_WORLD);
+    if (rank == 0) printf("CG + MPIL Persistent RMA Hier EarlyBird: %d iter, norm %e\n", 
+            conv_iter, sqrt(sum) / norm_b);
+
+    // Persistent RMA Multileader
+    MPIL_Set_allreduce_init_algorithm(ALLREDUCE_RMA_MULTILEADER);
+    std::fill(x.begin(), x.end(), 0);
+    conv_iter = CG_persistent(A, x, b);
+    r = b;
+    spmv(-1.0, A, x, 1.0, r);
+    sum = 0;
+    for (int i = 0; i < r.size(); i++)
+        sum += r[i] * r[i];
+    MPI_Allreduce(MPI_IN_PLACE, &sum, 1, MPI_DOUBLE, MPI_SUM,
+            MPI_COMM_WORLD);
+    if (rank == 0) printf("CG + MPIL Persistent RMA ML: %d iter, norm %e\n", 
+            conv_iter, sqrt(sum) / norm_b);
+
+        // Persistent RMA Multileader Early Bird
+    MPIL_Set_allreduce_init_algorithm(ALLREDUCE_RMA_MULTILEADER_EARLYBIRD);
+    std::fill(x.begin(), x.end(), 0);
+    conv_iter = CG_persistent(A, x, b);
+    r = b;
+    spmv(-1.0, A, x, 1.0, r);
+    sum = 0;
+    for (int i = 0; i < r.size(); i++)
+        sum += r[i] * r[i];
+    MPI_Allreduce(MPI_IN_PLACE, &sum, 1, MPI_DOUBLE, MPI_SUM,
+            MPI_COMM_WORLD);
+    if (rank == 0) printf("CG + MPIL Persistent RMA ML EarlyBird: %d iter, norm %e\n", 
+            conv_iter, sqrt(sum) / norm_b);
+
+
+
+    /***********************************************************/
 
     // PMPI
     MPIL_Set_allreduce_algorithm(ALLREDUCE_PMPI);
@@ -418,7 +641,7 @@ int main(int argc, char* argv[])
     MPI_Allreduce(&tfinal, &t0, 1, MPI_DOUBLE, MPI_MAX, MPI_COMM_WORLD);
     if (rank == 0) printf("CG with MPIL High-Radix Dissemination Allreduce: %e\n", t0);
 
-    // Dissemination RMA
+    // RMA
     MPIL_Set_allreduce_algorithm(ALLREDUCE_RMA);
     t0 = MPI_Wtime();
     for (int i = 0; i < n_iters; i++)
@@ -429,6 +652,127 @@ int main(int argc, char* argv[])
     tfinal = (MPI_Wtime() - t0) / n_iters;
     MPI_Allreduce(&tfinal, &t0, 1, MPI_DOUBLE, MPI_MAX, MPI_COMM_WORLD);
     if (rank == 0) printf("CG with MPIL RMA Allreduce: %e\n", t0);
+
+
+    // Persistent Recursive Doubling
+    MPIL_Set_allreduce_init_algorithm(ALLREDUCE_RECURSIVE_DOUBLING);
+    t0 = MPI_Wtime();
+    for (int i = 0; i < n_iters; i++)
+    {
+        std::fill(x.begin(), x.end(), 0);
+        CG_persistent(A, x, b);
+    }
+    tfinal = (MPI_Wtime() - t0) / n_iters;
+    MPI_Allreduce(&tfinal, &t0, 1, MPI_DOUBLE, MPI_MAX, MPI_COMM_WORLD);
+    if (rank == 0) printf("CG with Persistent MPIL Recursive Doubling Allreduce: %e\n", t0);
+
+    // Persistent Dissemination Node-Aware
+    MPIL_Set_allreduce_init_algorithm(ALLREDUCE_DISSEMINATION_LOC);
+    t0 = MPI_Wtime();
+    for (int i = 0; i < n_iters; i++)
+    {
+        std::fill(x.begin(), x.end(), 0);
+        CG_persistent(A, x, b);
+    }
+    tfinal = (MPI_Wtime() - t0) / n_iters;
+    MPI_Allreduce(&tfinal, &t0, 1, MPI_DOUBLE, MPI_MAX, MPI_COMM_WORLD);
+    if (rank == 0) printf("CG with Persistent MPIL Node-Aware Dissemination Allreduce: %e\n", t0);
+
+    // Persistent Dissemination Locality-Aware
+    MPIL_Set_allreduce_init_algorithm(ALLREDUCE_DISSEMINATION_ML);
+    t0 = MPI_Wtime();
+    for (int i = 0; i < n_iters; i++)
+    {
+        std::fill(x.begin(), x.end(), 0);
+        CG_persistent(A, x, b);
+    }
+    tfinal = (MPI_Wtime() - t0) / n_iters;
+    MPI_Allreduce(&tfinal, &t0, 1, MPI_DOUBLE, MPI_MAX, MPI_COMM_WORLD);
+    if (rank == 0) printf("CG with Persistent MPIL Locality-Aware Dissemination Allreduce: %e\n", t0);
+
+    // Persistent Dissemination High-Radix
+    MPIL_Set_allreduce_init_algorithm(ALLREDUCE_DISSEMINATION_RADIX);
+    t0 = MPI_Wtime();
+    for (int i = 0; i < n_iters; i++)
+    {
+        std::fill(x.begin(), x.end(), 0);
+        CG_persistent(A, x, b);
+    }
+    tfinal = (MPI_Wtime() - t0) / n_iters;
+    MPI_Allreduce(&tfinal, &t0, 1, MPI_DOUBLE, MPI_MAX, MPI_COMM_WORLD);
+    if (rank == 0) printf("CG with Persistent MPIL High-Radix Dissemination Allreduce: %e\n", t0);
+
+    // Persistent RMA
+    MPIL_Set_allreduce_init_algorithm(ALLREDUCE_RMA);
+    t0 = MPI_Wtime();
+    for (int i = 0; i < n_iters; i++)
+    {
+        std::fill(x.begin(), x.end(), 0);
+        CG_persistent(A, x, b);
+    }
+    tfinal = (MPI_Wtime() - t0) / n_iters;
+    MPI_Allreduce(&tfinal, &t0, 1, MPI_DOUBLE, MPI_MAX, MPI_COMM_WORLD);
+    if (rank == 0) printf("CG with Persistent MPIL RMA Allreduce: %e\n", t0);
+
+    // Persistent RMA Early Bird
+    MPIL_Set_allreduce_init_algorithm(ALLREDUCE_RMA_EARLYBIRD);
+    t0 = MPI_Wtime();
+    for (int i = 0; i < n_iters; i++)
+    {
+        std::fill(x.begin(), x.end(), 0);
+        CG_persistent(A, x, b);
+    }
+    tfinal = (MPI_Wtime() - t0) / n_iters;
+    MPI_Allreduce(&tfinal, &t0, 1, MPI_DOUBLE, MPI_MAX, MPI_COMM_WORLD);
+    if (rank == 0) printf("CG with Persistent MPIL RMA EarlyBird Allreduce: %e\n", t0);
+
+    // Persistent RMA Hierarchical
+    MPIL_Set_allreduce_init_algorithm(ALLREDUCE_RMA_HIERARCHICAL);
+    t0 = MPI_Wtime();
+    for (int i = 0; i < n_iters; i++)
+    {
+        std::fill(x.begin(), x.end(), 0);
+        CG_persistent(A, x, b);
+    }
+    tfinal = (MPI_Wtime() - t0) / n_iters;
+    MPI_Allreduce(&tfinal, &t0, 1, MPI_DOUBLE, MPI_MAX, MPI_COMM_WORLD);
+    if (rank == 0) printf("CG with Persistent MPIL RMA Hierarchical Allreduce: %e\n", t0);
+
+    // Persistent RMA Hierarchical Early Bird
+    MPIL_Set_allreduce_init_algorithm(ALLREDUCE_RMA_HIERARCHICAL_EARLYBIRD);
+    t0 = MPI_Wtime();
+    for (int i = 0; i < n_iters; i++)
+    {
+        std::fill(x.begin(), x.end(), 0);
+        CG_persistent(A, x, b);
+    }
+    tfinal = (MPI_Wtime() - t0) / n_iters;
+    MPI_Allreduce(&tfinal, &t0, 1, MPI_DOUBLE, MPI_MAX, MPI_COMM_WORLD);
+    if (rank == 0) printf("CG with Persistent MPIL RMA Hierarchical EarlyBird Allreduce: %e\n", t0);
+
+    // Persistent RMA Multileader
+    MPIL_Set_allreduce_init_algorithm(ALLREDUCE_RMA_MULTILEADER);
+    t0 = MPI_Wtime();
+    for (int i = 0; i < n_iters; i++)
+    {
+        std::fill(x.begin(), x.end(), 0);
+        CG_persistent(A, x, b);
+    }
+    tfinal = (MPI_Wtime() - t0) / n_iters;
+    MPI_Allreduce(&tfinal, &t0, 1, MPI_DOUBLE, MPI_MAX, MPI_COMM_WORLD);
+    if (rank == 0) printf("CG with Persistent MPIL RMA ML Allreduce: %e\n", t0);
+
+    // Persistent RMA Multileader Early Bird
+    MPIL_Set_allreduce_init_algorithm(ALLREDUCE_RMA_MULTILEADER_EARLYBIRD);
+    t0 = MPI_Wtime();
+    for (int i = 0; i < n_iters; i++)
+    {
+        std::fill(x.begin(), x.end(), 0);
+        CG_persistent(A, x, b);
+    }
+    tfinal = (MPI_Wtime() - t0) / n_iters;
+    MPI_Allreduce(&tfinal, &t0, 1, MPI_DOUBLE, MPI_MAX, MPI_COMM_WORLD);
+    if (rank == 0) printf("CG with Persistent MPIL RMA ML EarlyBird Allreduce: %e\n", t0);
 
     MPI_Finalize();
 }

@@ -72,55 +72,18 @@ void spmv(double alpha, ParMat& A, std::vector<double>& x,
 void spmv(double alpha, ParMat& A, std::vector<double>& x, 
         double beta, std::vector<double>& b, MPIL_Comm* mpil_comm,
         std::vector<double>& sendbuf, std::vector<double>& recvbuf,
-        MPIL_Request** req_ptr)
+        MPIL_Request* req)
 {
     int proc, start, end;
     int tag = 0;
 
-    if (*req_ptr == NULL)
-    {
-        MPIL_Info* mpil_info;
-        MPIL_Info_init(&mpil_info);
-
-        MPIL_Topo* mpil_topo;
-        MPIL_Topo_init(A.recv_comm.n_msgs,
-                A.recv_comm.procs.data(),
-                MPI_UNWEIGHTED,
-                A.send_comm.n_msgs,
-                A.send_comm.procs.data(),
-                MPI_UNWEIGHTED,
-                mpil_info,
-                &mpil_topo);
-
-        std::vector<long> global_send_idx(A.send_comm.size_msgs);
-        for (int i = 0; i < A.send_comm.size_msgs; i++)
-            global_send_idx[i] = A.send_comm.idx[i] + A.first_row;
-        MPIL_Neighbor_alltoallv_init_ext_topo(sendbuf.data(), 
-                A.send_comm.counts.data(),
-                A.send_comm.ptr.data(),
-                global_send_idx.data(),
-                MPI_DOUBLE,
-                recvbuf.data(),
-                A.recv_comm.counts.data(),
-                A.recv_comm.ptr.data(),
-                A.off_proc_columns.data(),
-                MPI_DOUBLE,
-                mpil_topo,
-                mpil_comm,
-                mpil_info,
-                req_ptr);
-
-        MPIL_Info_free(&mpil_info);
-        MPIL_Topo_free(&mpil_topo);
-    }
-
     for (int i = 0; i < A.send_comm.size_msgs; i++)
         sendbuf[i] = x[A.send_comm.idx[i]];
-    MPIL_Start(*req_ptr);
+    MPIL_Start(req);
 
     spmv(alpha, A.on_proc, x, beta, b);
 
-    MPIL_Wait(*req_ptr, MPI_STATUS_IGNORE);
+    MPIL_Wait(req, MPI_STATUS_IGNORE);
 
     spmv(alpha, A.off_proc, recvbuf, 1.0, b);
 }
@@ -154,11 +117,39 @@ int CG_persistent(ParMat& A, std::vector<double>& x, std::vector<double>& b)
     // Setup persistent allreduces
     double local_sum, global_sum;
     MPIL_Request* mpil_req;
-    MPIL_Request* mpil_spmv_req = NULL;
+    MPIL_Request* mpil_spmv_req;
     MPIL_Comm* mpil_comm;
     MPIL_Comm_init(&mpil_comm, MPI_COMM_WORLD);
     MPIL_Info* mpil_info;
     MPIL_Info_init(&mpil_info);
+
+    MPIL_Topo* mpil_topo;
+    MPIL_Topo_init(A.recv_comm.n_msgs,
+                A.recv_comm.procs.data(),
+                MPI_UNWEIGHTED,
+                A.send_comm.n_msgs,
+                A.send_comm.procs.data(),
+                MPI_UNWEIGHTED,
+                mpil_info,
+                &mpil_topo);
+    std::vector<long> global_send_idx(A.send_comm.size_msgs);
+    for (int i = 0; i < A.send_comm.size_msgs; i++)
+        global_send_idx[i] = A.send_comm.idx[i] + A.first_row;
+    MPIL_Neighbor_alltoallv_init_ext_topo(sendbuf.data(), 
+                A.send_comm.counts.data(),
+                A.send_comm.ptr.data(),
+                global_send_idx.data(),
+                MPI_DOUBLE,
+                recvbuf.data(),
+                A.recv_comm.counts.data(),
+                A.recv_comm.ptr.data(),
+                A.off_proc_columns.data(),
+                MPI_DOUBLE,
+                mpil_topo,
+                mpil_comm,
+                mpil_info,
+                &mpil_spmv_req);
+
     MPIL_Allreduce_init(&local_sum, &global_sum, 1, MPI_DOUBLE,
            MPI_SUM, mpil_comm, mpil_info, &mpil_req); 
 
@@ -171,7 +162,8 @@ int CG_persistent(ParMat& A, std::vector<double>& x, std::vector<double>& b)
 
     // r0 = b - A * x0
     r = b;
-    spmv(-1.0, A, x, 1.0, r, mpil_comm, sendbuf, recvbuf, &mpil_spmv_req);
+    spmv(-1.0, A, x, 1.0, r, mpil_comm, sendbuf, recvbuf,
+            mpil_spmv_req);
 
     // p0 = r0
     p = r;
@@ -201,7 +193,8 @@ int CG_persistent(ParMat& A, std::vector<double>& x, std::vector<double>& b)
     while (norm_r > tol && iter < max_iter)
     {
         // alpha_i = (r_i, r_i) / (A*p_i, p_i)
-        spmv(1.0, A, p, 0.0, Ap, mpil_comm, sendbuf, recvbuf, &mpil_spmv_req);
+        spmv(1.0, A, p, 0.0, Ap, mpil_comm, sendbuf, recvbuf, 
+                mpil_spmv_req);
         local_sum = 0;
         for (int i = 0; i < Ap.size(); i++)
             local_sum += Ap[i] * p[i];
@@ -225,7 +218,8 @@ int CG_persistent(ParMat& A, std::vector<double>& x, std::vector<double>& b)
         else
         {
             r = b;
-            spmv(-1.0, A, x, 1.0, r, mpil_comm, sendbuf, recvbuf, &mpil_spmv_req);
+            spmv(-1.0, A, x, 1.0, r, mpil_comm, sendbuf, recvbuf, 
+                    mpil_spmv_req);
         }
 
         local_sum = 0;
@@ -250,6 +244,7 @@ int CG_persistent(ParMat& A, std::vector<double>& x, std::vector<double>& b)
 
     MPIL_Request_free(&mpil_req);
     MPIL_Request_free(&mpil_spmv_req);
+    MPIL_Topo_free(&mpil_topo);
     MPIL_Info_free(&mpil_info);
     MPIL_Comm_free(&mpil_comm);
 
@@ -488,6 +483,7 @@ int main(int argc, char* argv[])
         if (rank == 0) printf("Persistent CG + %s: %d iter, norm %e\n", 
                 pers_names[idx], conv_iter, sqrt(sum) / norm_b);
 
+/*
         n_iters = 1;
         t0 = MPI_Wtime();
         for (int i = 0; i < n_iters; i++)
@@ -521,6 +517,7 @@ int main(int argc, char* argv[])
         tfinal = (MPI_Wtime() - t0) / n_iters;
         MPI_Allreduce(&tfinal, &t0, 1, MPI_DOUBLE, MPI_MAX, MPI_COMM_WORLD);
         if (rank == 0) printf("Persistent CG with %s Allreduce: %e\n", pers_names[idx], t0);
+*/
     }
 
     MPIL_Comm_free(&mpil_comm);

@@ -74,18 +74,25 @@ void spmv(double alpha, ParMat& A, std::vector<double>& x,
         std::vector<double>& sendbuf, std::vector<double>& recvbuf,
         MPIL_Request* req)
 {
-    int proc, start, end;
-    int tag = 0;
+    if (req != NULL)
+    {
+        int proc, start, end;
+        int tag = 0;
 
-    for (int i = 0; i < A.send_comm.size_msgs; i++)
-        sendbuf[i] = x[A.send_comm.idx[i]];
-    MPIL_Start(req);
+        for (int i = 0; i < A.send_comm.size_msgs; i++)
+            sendbuf[i] = x[A.send_comm.idx[i]];
+        MPIL_Start(req);
 
-    spmv(alpha, A.on_proc, x, beta, b);
+        spmv(alpha, A.on_proc, x, beta, b);
 
-    MPIL_Wait(req, MPI_STATUS_IGNORE);
+        MPIL_Wait(req, MPI_STATUS_IGNORE);
 
-    spmv(alpha, A.off_proc, recvbuf, 1.0, b);
+        spmv(alpha, A.off_proc, recvbuf, 1.0, b);
+    }
+    else
+    {
+        spmv(alpha, A, x, beta, b, mpil_comm);
+    }
 }
 
 void axpy(double alpha, std::vector<double>& x, std::vector<double>& y)
@@ -100,7 +107,29 @@ void scale(double alpha, std::vector<double>& x)
         x[i] = alpha*x[i];
 }
 
-int CG_persistent(ParMat& A, std::vector<double>& x, std::vector<double>& b)
+double inner_product(std::vector<double>& a, std::vector<double>& b,
+            double* local_sum_ptr, double* global_sum_ptr,
+            MPIL_Comm* mpil_comm, MPIL_Request* mpil_req)
+{
+    *local_sum_ptr = 0;
+    for (int i = 0; i < a.size(); i++)
+        *local_sum_ptr += a[i] * b[i];
+
+    if (mpil_req == NULL)
+    {
+        MPIL_Allreduce(local_sum_ptr, global_sum_ptr, 1, MPI_DOUBLE, MPI_SUM,
+                mpil_comm);
+    }
+    else
+    {
+        MPIL_Start(mpil_req);
+        MPIL_Wait(mpil_req, MPI_STATUS_IGNORE);
+    }
+    return *global_sum_ptr;
+}
+
+int CG(ParMat& A, std::vector<double>& x, std::vector<double>& b,
+        bool spmv_init, bool allreduce_init)
 {
     int rank, num_procs;
     MPI_Comm_rank(MPI_COMM_WORLD, &rank);
@@ -116,15 +145,17 @@ int CG_persistent(ParMat& A, std::vector<double>& x, std::vector<double>& b)
 
     // Setup persistent allreduces
     double local_sum, global_sum;
-    MPIL_Request* mpil_req;
-    MPIL_Request* mpil_spmv_req;
+    MPIL_Request* mpil_req = NULL;
+    MPIL_Request* mpil_spmv_req = NULL;
     MPIL_Comm* mpil_comm;
     MPIL_Comm_init(&mpil_comm, MPI_COMM_WORLD);
     MPIL_Info* mpil_info;
     MPIL_Info_init(&mpil_info);
+    MPIL_Topo* mpil_topo = NULL;
 
-    MPIL_Topo* mpil_topo;
-    MPIL_Topo_init(A.recv_comm.n_msgs,
+    if (spmv_init)
+    {
+        MPIL_Topo_init(A.recv_comm.n_msgs,
                 A.recv_comm.procs.data(),
                 MPI_UNWEIGHTED,
                 A.send_comm.n_msgs,
@@ -132,10 +163,10 @@ int CG_persistent(ParMat& A, std::vector<double>& x, std::vector<double>& b)
                 MPI_UNWEIGHTED,
                 mpil_info,
                 &mpil_topo);
-    std::vector<long> global_send_idx(A.send_comm.size_msgs);
-    for (int i = 0; i < A.send_comm.size_msgs; i++)
-        global_send_idx[i] = A.send_comm.idx[i] + A.first_row;
-    MPIL_Neighbor_alltoallv_init_ext_topo(sendbuf.data(), 
+        std::vector<long> global_send_idx(A.send_comm.size_msgs);
+        for (int i = 0; i < A.send_comm.size_msgs; i++)
+            global_send_idx[i] = A.send_comm.idx[i] + A.first_row;
+        MPIL_Neighbor_alltoallv_init_ext_topo(sendbuf.data(), 
                 A.send_comm.counts.data(),
                 A.send_comm.ptr.data(),
                 global_send_idx.data(),
@@ -149,9 +180,13 @@ int CG_persistent(ParMat& A, std::vector<double>& x, std::vector<double>& b)
                 mpil_comm,
                 mpil_info,
                 &mpil_spmv_req);
+    }
 
-    MPIL_Allreduce_init(&local_sum, &global_sum, 1, MPI_DOUBLE,
+    if (allreduce_init)
+    {
+        MPIL_Allreduce_init(&local_sum, &global_sum, 1, MPI_DOUBLE,
            MPI_SUM, mpil_comm, mpil_info, &mpil_req); 
+    }
 
     int iter, recompute_r;
     double alpha, beta;
@@ -169,12 +204,8 @@ int CG_persistent(ParMat& A, std::vector<double>& x, std::vector<double>& b)
     p = r;
 
     // Find initial (r, r) and residual
-    local_sum = 0;
-    for (int i = 0; i < r.size(); i++)
-        local_sum += r[i] * r[i];
-    MPIL_Start(mpil_req);
-    MPIL_Wait(mpil_req, MPI_STATUS_IGNORE);
-    rr_inner = global_sum;
+    rr_inner = inner_product(r, r, &local_sum, &global_sum,
+            mpil_comm, mpil_req);
 
     norm_r = sqrt(rr_inner);
     res.push_back(norm_r);
@@ -195,12 +226,8 @@ int CG_persistent(ParMat& A, std::vector<double>& x, std::vector<double>& b)
         // alpha_i = (r_i, r_i) / (A*p_i, p_i)
         spmv(1.0, A, p, 0.0, Ap, mpil_comm, sendbuf, recvbuf, 
                 mpil_spmv_req);
-        local_sum = 0;
-        for (int i = 0; i < Ap.size(); i++)
-            local_sum += Ap[i] * p[i];
-        MPIL_Start(mpil_req);
-        MPIL_Wait(mpil_req, MPI_STATUS_IGNORE);
-        App_inner = global_sum;
+        App_inner = inner_product(Ap, p, &local_sum, &global_sum,
+            mpil_comm, mpil_req);
         if (App_inner < 0.0)
         {
             printf("Indefinite matrix detected in CG! Aborting...\n");
@@ -222,12 +249,8 @@ int CG_persistent(ParMat& A, std::vector<double>& x, std::vector<double>& b)
                     mpil_spmv_req);
         }
 
-        local_sum = 0;
-        for (int i = 0; i < r.size(); i++)
-            local_sum += r[i] * r[i];
-        MPIL_Start(mpil_req);
-        MPIL_Wait(mpil_req, MPI_STATUS_IGNORE);
-        next_inner = global_sum;
+        next_inner = inner_product(r, r, &local_sum, &global_sum,
+                mpil_comm, mpil_req);
         beta = next_inner / rr_inner;
 
         scale(beta, p);
@@ -242,125 +265,18 @@ int CG_persistent(ParMat& A, std::vector<double>& x, std::vector<double>& b)
         iter++;
     }
 
-    MPIL_Request_free(&mpil_req);
-    MPIL_Request_free(&mpil_spmv_req);
-    MPIL_Topo_free(&mpil_topo);
+    if (mpil_req != NULL)
+        MPIL_Request_free(&mpil_req);
+    if (mpil_spmv_req != NULL)
+    {
+        MPIL_Request_free(&mpil_spmv_req);
+        MPIL_Topo_free(&mpil_topo);
+    }
     MPIL_Info_free(&mpil_info);
     MPIL_Comm_free(&mpil_comm);
 
     return iter;
 }
-
-int CG(ParMat& A, std::vector<double>& x, std::vector<double>& b)
-{
-    int rank, num_procs;
-    MPI_Comm_rank(MPI_COMM_WORLD, &rank);
-    MPI_Comm_size(MPI_COMM_WORLD, &num_procs);
-
-    // CG Variables
-    std::vector<double> r(A.local_rows);
-    std::vector<double> p(A.local_rows);
-    std::vector<double> Ap(A.local_rows);
-    std::vector<double> res;
-
-    // Setup persistent allreduces
-    double local_sum, global_sum;
-    MPIL_Request* mpil_req;
-    MPIL_Comm* mpil_comm;
-    MPIL_Comm_init(&mpil_comm, MPI_COMM_WORLD);
-
-    int iter, recompute_r;
-    double alpha, beta;
-    double rr_inner, next_inner, App_inner;
-    double norm_r, tol = 1e-6;
-    //int max_iter = ((int)(1.3*b.size())) + 2;
-    int max_iter = 500;
-
-    // r0 = b - A * x0
-    r = b;
-    spmv(-1.0, A, x, 1.0, r, mpil_comm);
-
-    // p0 = r0
-    p = r;
-
-    // Find initial (r, r) and residual
-    local_sum = 0;
-    for (int i = 0; i < r.size(); i++)
-        local_sum += r[i] * r[i];
-    MPIL_Allreduce(&local_sum, &global_sum, 1, MPI_DOUBLE, MPI_SUM,
-            mpil_comm);
-    rr_inner = global_sum;
-
-    norm_r = sqrt(rr_inner);
-    res.push_back(norm_r);
-
-    // Scale tolerance by norm_r
-    if (norm_r != 0.0)
-    {
-        tol = tol * norm_r;
-    }
-
-    // How often should r be recomputed
-    recompute_r = 8;
-    iter = 0;
-
-    // Main CG Loop
-    while (norm_r > tol && iter < max_iter)
-    {
-        // alpha_i = (r_i, r_i) / (A*p_i, p_i)
-        spmv(1.0, A, p, 0.0, Ap, mpil_comm);
-        local_sum = 0;
-        for (int i = 0; i < Ap.size(); i++)
-            local_sum += Ap[i] * p[i];
-        MPIL_Allreduce(&local_sum, &global_sum, 1, MPI_DOUBLE, MPI_SUM,
-                mpil_comm);
-        App_inner = global_sum;
-
-        if (App_inner < 0.0)
-        {
-            printf("Indefinite matrix detected in CG! Aborting...\n");
-            MPI_Abort(MPI_COMM_WORLD, -1);
-        }
-        alpha = rr_inner / App_inner;
-
-        axpy(alpha, x, p);
-
-        // x_{i+1} = x_i + alpha_i * p_i
-        if ((iter % recompute_r) && iter > 0)
-        {
-            axpy(-1.0*alpha, r, Ap);
-        }
-        else
-        {
-            r = b;
-            spmv(-1.0, A, x, 1.0, r, mpil_comm);
-        }
-
-        local_sum = 0;
-        for (int i = 0; i < r.size(); i++)
-            local_sum += r[i] * r[i];
-        MPIL_Allreduce(&local_sum, &global_sum, 1, MPI_DOUBLE, MPI_SUM,
-                mpil_comm);
-        next_inner = global_sum;
-        beta = next_inner / rr_inner;
-
-        scale(beta, p);
-        axpy(1.0, p, r);
-
-        // Update next inner product
-        rr_inner = next_inner;
-        norm_r = sqrt(rr_inner);
-
-        res.push_back(norm_r);
-
-        iter++;
-    }
-
-    MPIL_Comm_free(&mpil_comm);
-
-    return iter;
-}
-
 
 int main(int argc, char* argv[])
 {
@@ -404,122 +320,119 @@ int main(int argc, char* argv[])
             MPI_COMM_WORLD);
     norm_b = sqrt(norm_b);
 
+    std::vector<NeighborAlltoallvMethod> neighbor_methods = {
+            NEIGHBOR_ALLTOALLV_STANDARD, 
+            NEIGHBOR_ALLTOALLV_LOCALITY
+            };
+    std::vector<NeighborAlltoallvInitMethod> neighbor_init_methods = {
+            NEIGHBOR_ALLTOALLV_INIT_STANDARD, 
+            NEIGHBOR_ALLTOALLV_INIT_LOCALITY
+            };
+    std::vector<const char*> neighbor_names = {
+            "Standard", 
+            "Locality", 
+            "Pers Standard", 
+            "Pers Locality"
+            };
+    std::vector<bool> neighbor_persistent = {false, false, true, true};
 
-    std::vector<AllreduceMethod> methods = {ALLREDUCE_PMPI, ALLREDUCE_RECURSIVE_DOUBLING, 
-            ALLREDUCE_DISSEMINATION_LOC, ALLREDUCE_DISSEMINATION_ML, ALLREDUCE_DISSEMINATION_RADIX};
-    std::vector<const char*> names = {"PMPI", "MPIL RD", "MPIL NA", "MPIL LA", "MPIL RADIX"};
+    std::vector<AllreduceMethod> methods = {
+            ALLREDUCE_PMPI, 
+            ALLREDUCE_RECURSIVE_DOUBLING, 
+            ALLREDUCE_DISSEMINATION_LOC, 
+            ALLREDUCE_DISSEMINATION_ML, 
+            ALLREDUCE_DISSEMINATION_RADIX,
+            ALLREDUCE_RECURSIVE_DOUBLING, 
+            ALLREDUCE_DISSEMINATION_LOC, 
+            ALLREDUCE_DISSEMINATION_ML, 
+            ALLREDUCE_DISSEMINATION_RADIX, 
+            ALLREDUCE_RMA_HIERARCHICAL,
+            ALLREDUCE_RMA_HIERARCHICAL_EARLYBIRD, 
+            ALLREDUCE_RMA_MULTILEADER,
+            ALLREDUCE_RMA_MULTILEADER_EARLYBIRD
+            };
+    std::vector<const char*> names = {
+            "PMPI", 
+            "MPIL RD", 
+            "MPIL NA", 
+            "MPIL LA", 
+            "MPIL RADIX"
+            "MPIL RD Pers", 
+            "MPIL NA Pers", 
+            "MPIL LA Pers", 
+            "MPIL RADIX Pers",
+            "MPIL RMA Hier Pers", 
+            "MPIL RMA Hier EB Pers", 
+            "MPIL RMA ML Pers", 
+            "MPIL RMA ML EB Pers"
+            };
+    std::vector<bool> persistent = {
+            false,
+            false,
+            false,
+            false,
+            false,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true
+            };
 
-    for (int idx = 0; idx < names.size(); idx++)
+    for (int neigh_idx = 0; neigh_idx < neighbor_names.size(); neigh_idx++)
     {
-        MPIL_Set_allreduce_algorithm(methods[idx]);
-        std::fill(x.begin(), x.end(), 0);
-        conv_iter = CG(A, x, b);
-        r = b;
-        spmv(-1.0, A, x, 1.0, r, mpil_comm);
-        sum = 0;
-        for (int i = 0; i < r.size(); i++)
-            sum += r[i] * r[i];
-        MPI_Allreduce(MPI_IN_PLACE, &sum, 1, MPI_DOUBLE, MPI_SUM,
-                MPI_COMM_WORLD);
-        if (rank == 0) printf("CG + %s: %d iter, norm %e\n", 
-                names[idx], conv_iter, sqrt(sum) / norm_b);
+        if (rank == 0) printf("Running with %s Neighbor Collectives\n", 
+                    neighbor_names[neigh_idx]);
 
-        n_iters = 1;
-        t0 = MPI_Wtime();
-        for (int i = 0; i < n_iters; i++)
+        bool persistent_spmv = neighbor_persistent[neigh_idx];
+        if (persistent_spmv)
+            MPIL_Set_alltoallv_neighbor_init_algorithm(
+                        neighbor_init_methods[neigh_idx - neighbor_methods.size()]);
+        else
+            MPIL_Set_alltoallv_neighbor_algorithm(
+                        neighbor_methods[neigh_idx]);
+
+
+        for (int idx = 0; idx < names.size(); idx++)
         {
+            MPIL_Set_allreduce_algorithm(methods[idx]);
+            t0 = MPI_Wtime();
             std::fill(x.begin(), x.end(), 0);
-            CG(A, x, b);
-        }
-        tfinal = (MPI_Wtime() - t0) / n_iters;
-        MPI_Allreduce(&tfinal, &t0, 1, MPI_DOUBLE, MPI_MAX, MPI_COMM_WORLD);
-    
-        if (t0 < 0.1)
-        {
-            n_iters = 10;
-            t0 = MPI_Wtime(); 
-            for (int i = 0; i < n_iters; i++)
-            {   
-                std::fill(x.begin(), x.end(), 0);
-                CG(A, x, b);
-            }
-            tfinal = (MPI_Wtime() - t0) / n_iters;
+            conv_iter = CG(A, x, b, persistent_spmv, persistent[idx]);
+            tfinal = (MPI_Wtime() - t0);
+            r = b;
+            spmv(-1.0, A, x, 1.0, r, mpil_comm);
+            sum = 0;
+            for (int i = 0; i < r.size(); i++)
+                sum += r[i] * r[i];
+            MPI_Allreduce(MPI_IN_PLACE, &sum, 1, MPI_DOUBLE, MPI_SUM,
+                    MPI_COMM_WORLD);
+            if (rank == 0) printf("CG + %s: %d iter, norm %e\n", 
+                    names[idx], conv_iter, sqrt(sum) / norm_b);
+
+            n_iters = 1;
             MPI_Allreduce(&tfinal, &t0, 1, MPI_DOUBLE, MPI_MAX, MPI_COMM_WORLD);
-            n_iters = 1.0 / t0;
-        }
+            if (t0 < 0.1)
+            {
+                n_iters = 0.1 / t0;
+            }
 
-        t0 = MPI_Wtime();
-        for (int i = 0; i < n_iters; i++)
-        {
-            std::fill(x.begin(), x.end(), 0);
-            CG(A, x, b);
-        }
-        tfinal = (MPI_Wtime() - t0) / n_iters;
-        MPI_Allreduce(&tfinal, &t0, 1, MPI_DOUBLE, MPI_MAX, MPI_COMM_WORLD);
-
-        if (rank == 0) printf("CG with %s Allreduce: %e\n", names[idx], t0);
-    }
-
-    std::vector<AllreduceMethod> pers_methods = {ALLREDUCE_RECURSIVE_DOUBLING, 
-            ALLREDUCE_DISSEMINATION_LOC, ALLREDUCE_DISSEMINATION_ML, 
-            ALLREDUCE_DISSEMINATION_RADIX, ALLREDUCE_RMA_HIERARCHICAL,
-            ALLREDUCE_RMA_HIERARCHICAL_EARLYBIRD, ALLREDUCE_RMA_MULTILEADER,
-            ALLREDUCE_RMA_MULTILEADER_EARLYBIRD};
-    std::vector<const char*> pers_names = {"MPIL RD", "MPIL NA", "MPIL LA", "MPIL RADIX",
-            "MPIL RMA Hier", "MPIL RMA Hier EB", "MPIL RMA ML", "MPIL RMA ML EB"};
-
-    for (int idx = 0; idx < pers_names.size(); idx++)
-    {
-        MPIL_Set_allreduce_init_algorithm(pers_methods[idx]);
-        std::fill(x.begin(), x.end(), 0);
-        conv_iter = CG_persistent(A, x, b);
-        r = b;
-        spmv(-1.0, A, x, 1.0, r, mpil_comm);
-        sum = 0;
-        for (int i = 0; i < r.size(); i++)
-            sum += r[i] * r[i];
-        MPI_Allreduce(MPI_IN_PLACE, &sum, 1, MPI_DOUBLE, MPI_SUM,
-                MPI_COMM_WORLD);
-        if (rank == 0) printf("Persistent CG + %s: %d iter, norm %e\n", 
-                pers_names[idx], conv_iter, sqrt(sum) / norm_b);
-
-/*
-        n_iters = 1;
-        t0 = MPI_Wtime();
-        for (int i = 0; i < n_iters; i++)
-        {
-            std::fill(x.begin(), x.end(), 0);
-            CG_persistent(A, x, b);
-        }
-        tfinal = (MPI_Wtime() - t0) / n_iters;
-        MPI_Allreduce(&tfinal, &t0, 1, MPI_DOUBLE, MPI_MAX, MPI_COMM_WORLD);
-
-        if (t0 < 0.1)
-        {
-            n_iters = 10;
             t0 = MPI_Wtime();
             for (int i = 0; i < n_iters; i++)
             {
                 std::fill(x.begin(), x.end(), 0);
-                CG_persistent(A, x, b);
+                CG(A, x, b, persistent_spmv, persistent[idx]);
             }
             tfinal = (MPI_Wtime() - t0) / n_iters;
             MPI_Allreduce(&tfinal, &t0, 1, MPI_DOUBLE, MPI_MAX, MPI_COMM_WORLD);
-            n_iters = 1.0 / t0;
+
+            if (rank == 0) printf("CG with %s Allreduce: %e\n", names[idx], t0);
         }
 
-        t0 = MPI_Wtime();
-        for (int i = 0; i < n_iters; i++)
-        {
-            std::fill(x.begin(), x.end(), 0);
-            CG_persistent(A, x, b);
-        }
-        tfinal = (MPI_Wtime() - t0) / n_iters;
-        MPI_Allreduce(&tfinal, &t0, 1, MPI_DOUBLE, MPI_MAX, MPI_COMM_WORLD);
-        if (rank == 0) printf("Persistent CG with %s Allreduce: %e\n", pers_names[idx], t0);
-*/
     }
-
     MPIL_Comm_free(&mpil_comm);
 
     MPI_Finalize();

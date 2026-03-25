@@ -284,11 +284,17 @@ int main(int argc, char* argv[])
     int rank, num_procs;
     MPI_Comm_rank(MPI_COMM_WORLD, &rank);
     MPI_Comm_size(MPI_COMM_WORLD, &num_procs);
+    double t0, tfinal;
 
     MPIL_Comm* mpil_comm;
     MPIL_Comm_init(&mpil_comm, MPI_COMM_WORLD);
 
-    double t0, tfinal;
+    MPIL_Comm_topo_init(mpil_comm);
+    int ppn;
+    MPIL_Comm_local_size(mpil_comm, &ppn);
+
+    // 4 NUMA regions per node, aggregate by NUMA
+    MPIL_Comm_update_locality(mpil_comm, ppn / 8);
 
     const char* filename = "Dubcova2.pm";
     if (argc > 1)
@@ -297,8 +303,23 @@ int main(int argc, char* argv[])
     }
 
     ParMat A;
+
+    MPI_Barrier(MPI_COMM_WORLD);
+    t0 = MPI_Wtime();
     readParMatrix(filename, A);
+    tfinal = MPI_Wtime() - t0;
+    MPI_Allreduce(&tfinal, &t0, 1, MPI_DOUBLE, MPI_MAX, MPI_COMM_WORLD);
+    if (rank == 0) printf("Read matrix: %e\n", t0);
+    fflush(stdout);
+
+    MPI_Barrier(MPI_COMM_WORLD);
+    t0 = MPI_Wtime();
     form_comm(A);
+    tfinal = MPI_Wtime() - t0;
+    MPI_Allreduce(&tfinal, &t0, 1, MPI_DOUBLE, MPI_MAX, MPI_COMM_WORLD);
+    if (rank == 0) printf("Form comm: %e\n", t0);
+    fflush(stdout);
+
     std::vector<double> x(A.local_cols);
     std::vector<double> b(A.local_rows);
 
@@ -348,23 +369,23 @@ int main(int argc, char* argv[])
             ALLREDUCE_DISSEMINATION_RADIX, 
             ALLREDUCE_RMA_HIERARCHICAL,
             ALLREDUCE_RMA_HIERARCHICAL_EARLYBIRD, 
-            ALLREDUCE_RMA_MULTILEADER,
-            ALLREDUCE_RMA_MULTILEADER_EARLYBIRD
+            //ALLREDUCE_RMA_MULTILEADER,
+            //ALLREDUCE_RMA_MULTILEADER_EARLYBIRD
             };
     std::vector<const char*> names = {
             "PMPI", 
             "MPIL RD", 
             "MPIL NA", 
             "MPIL LA", 
-            "MPIL RADIX"
+            "MPIL RADIX",
             "MPIL RD Pers", 
             "MPIL NA Pers", 
             "MPIL LA Pers", 
             "MPIL RADIX Pers",
             "MPIL RMA Hier Pers", 
             "MPIL RMA Hier EB Pers", 
-            "MPIL RMA ML Pers", 
-            "MPIL RMA ML EB Pers"
+            //"MPIL RMA ML Pers", 
+            //"MPIL RMA ML EB Pers"
             };
     std::vector<bool> persistent = {
             false,
@@ -378,8 +399,8 @@ int main(int argc, char* argv[])
             true,
             true,
             true,
-            true,
-            true
+            //true,
+            //true
             };
 
     for (int neigh_idx = 0; neigh_idx < neighbor_names.size(); neigh_idx++)
@@ -399,6 +420,7 @@ int main(int argc, char* argv[])
         for (int idx = 0; idx < names.size(); idx++)
         {
             MPIL_Set_allreduce_algorithm(methods[idx]);
+            MPI_Barrier(MPI_COMM_WORLD);
             t0 = MPI_Wtime();
             std::fill(x.begin(), x.end(), 0);
             conv_iter = CG(A, x, b, persistent_spmv, persistent[idx]);
@@ -415,21 +437,24 @@ int main(int argc, char* argv[])
 
             n_iters = 1;
             MPI_Allreduce(&tfinal, &t0, 1, MPI_DOUBLE, MPI_MAX, MPI_COMM_WORLD);
-            if (t0 < 0.1)
-            {
-                n_iters = 0.1 / t0;
-            }
+            if (t0 < 1.0)
+                n_iters = 1.0 / t0;
 
-            t0 = MPI_Wtime();
-            for (int i = 0; i < n_iters; i++)
+            for (int test = 0; test < 5; test++)
             {
-                std::fill(x.begin(), x.end(), 0);
-                CG(A, x, b, persistent_spmv, persistent[idx]);
+                MPI_Barrier(MPI_COMM_WORLD);
+                t0 = MPI_Wtime();
+                for (int i = 0; i < n_iters; i++)
+                {
+                    std::fill(x.begin(), x.end(), 0);
+                    CG(A, x, b, persistent_spmv, persistent[idx]);
+                }
+                tfinal = (MPI_Wtime() - t0) / n_iters;
+                MPI_Allreduce(&tfinal, &t0, 1, MPI_DOUBLE, MPI_MAX, 
+                        MPI_COMM_WORLD);
+                if (rank == 0) printf("CG with %s Allreduce: %e\n", 
+                        names[idx], t0);
             }
-            tfinal = (MPI_Wtime() - t0) / n_iters;
-            MPI_Allreduce(&tfinal, &t0, 1, MPI_DOUBLE, MPI_MAX, MPI_COMM_WORLD);
-
-            if (rank == 0) printf("CG with %s Allreduce: %e\n", names[idx], t0);
         }
 
     }

@@ -1,0 +1,1080 @@
+/usr/workspace/bienz1/benchmark_mats/SPD/Fault_639.pm
+srun --ntasks-per-node 112 -N 16 ./cg /usr/workspace/bienz1/benchmark_mats/SPD/Fault_639.pm
+Running with Standard Neighbor Collectives
+CG + PMPI: 500 iter, norm 1.420867e-03
+CG with PMPI Allreduce: 1.027166e-01
+CG with PMPI Allreduce: 1.010703e-01
+CG with PMPI Allreduce: 1.025026e-01
+CG with PMPI Allreduce: 1.017573e-01
+CG with PMPI Allreduce: 9.993603e-02
+CG + MPIL RD: 500 iter, norm 1.700131e-03
+CG with MPIL RD Allreduce: 9.836778e-02
+CG with MPIL RD Allreduce: 1.080745e-01
+CG with MPIL RD Allreduce: 1.006414e-01
+CG with MPIL RD Allreduce: 1.127951e-01
+CG with MPIL RD Allreduce: 1.000878e-01
+CG + MPIL NA: 500 iter, norm 1.483904e-03
+CG with MPIL NA Allreduce: 9.575886e-02
+CG with MPIL NA Allreduce: 9.216458e-02
+CG with MPIL NA Allreduce: 9.202013e-02
+CG with MPIL NA Allreduce: 1.064246e-01
+CG with MPIL NA Allreduce: 9.163860e-02
+CG + MPIL LA: 500 iter, norm 1.474920e-03
+CG with MPIL LA Allreduce: 9.942679e-02
+CG with MPIL LA Allreduce: 9.862198e-02
+CG with MPIL LA Allreduce: 9.987398e-02
+CG with MPIL LA Allreduce: 9.828553e-02
+CG with MPIL LA Allreduce: 9.453042e-02
+CG + MPIL RADIX: 500 iter, norm 1.391420e-03
+CG with MPIL RADIX Allreduce: 1.066662e-01
+CG with MPIL RADIX Allreduce: 1.121659e-01
+CG with MPIL RADIX Allreduce: 1.233159e-01
+CG with MPIL RADIX Allreduce: 1.155295e-01
+CG with MPIL RADIX Allreduce: 1.083054e-01
+CG + MPIL RD Pers: 500 iter, norm 1.700131e-03
+CG with MPIL RD Pers Allreduce: 9.401582e-02
+CG with MPIL RD Pers Allreduce: 1.026502e-01
+CG with MPIL RD Pers Allreduce: 1.012072e-01
+CG with MPIL RD Pers Allreduce: 1.009373e-01
+CG with MPIL RD Pers Allreduce: 1.008692e-01
+CG + MPIL NA Pers: 500 iter, norm 1.700131e-03
+CG with MPIL NA Pers Allreduce: 1.026424e-01
+CG with MPIL NA Pers Allreduce: 1.147150e-01
+CG with MPIL NA Pers Allreduce: 1.035501e-01
+CG with MPIL NA Pers Allreduce: 1.037111e-01
+CG with MPIL NA Pers Allreduce: 9.475969e-02
+CG + MPIL LA Pers: 500 iter, norm 1.700131e-03
+CG with MPIL LA Pers Allreduce: 1.018768e-01
+CG with MPIL LA Pers Allreduce: 9.793129e-02
+CG with MPIL LA Pers Allreduce: 1.136535e-01
+CG with MPIL LA Pers Allreduce: 1.000770e-01
+CG with MPIL LA Pers Allreduce: 1.030228e-01
+CG + MPIL RADIX Pers: 500 iter, norm 1.700131e-03
+CG with MPIL RADIX Pers Allreduce: 1.008360e-01
+CG with MPIL RADIX Pers Allreduce: 1.045998e-01
+CG with MPIL RADIX Pers Allreduce: 9.978140e-02
+CG with MPIL RADIX Pers Allreduce: 1.027921e-01
+CG with MPIL RADIX Pers Allreduce: 9.981331e-02
+CG + MPIL RMA Hier Pers: 500 iter, norm 1.700131e-03
+CG with MPIL RMA Hier Pers Allreduce: 1.007014e-01
+CG with MPIL RMA Hier Pers Allreduce: 1.146718e-01
+CG with MPIL RMA Hier Pers Allreduce: 9.899285e-02
+CG with MPIL RMA Hier Pers Allreduce: 1.058320e-01
+CG with MPIL RMA Hier Pers Allreduce: 1.026814e-01
+CG + MPIL RMA Hier EB Pers: 500 iter, norm 1.700131e-03
+CG with MPIL RMA Hier EB Pers Allreduce: 1.099768e-01
+CG with MPIL RMA Hier EB Pers Allreduce: 9.698086e-02
+CG with MPIL RMA Hier EB Pers Allreduce: 1.015892e-01
+CG with MPIL RMA Hier EB Pers Allreduce: 9.981895e-02
+CG with MPIL RMA Hier EB Pers Allreduce: 9.911742e-02
+Running with Locality Neighbor Collectives
+CG + PMPI: 500 iter, norm 1.420867e-03
+CG with PMPI Allreduce: 3.085001e-01
+CG with PMPI Allreduce: 3.037049e-01
+CG with PMPI Allreduce: 3.173641e-01
+CG with PMPI Allreduce: 3.093654e-01
+CG with PMPI Allreduce: 3.057504e-01
+CG + MPIL RD: 500 iter, norm 1.700131e-03
+CG with MPIL RD Allreduce: 3.133556e-01
+CG with MPIL RD Allreduce: 3.015254e-01
+CG with MPIL RD Allreduce: 3.088882e-01
+CG with MPIL RD Allreduce: 3.308234e-01
+CG with MPIL RD Allreduce: 3.222132e-01
+CG + MPIL NA: 500 iter, norm 1.483904e-03
+CG with MPIL NA Allreduce: 2.829635e-01
+CG with MPIL NA Allreduce: 2.730730e-01
+CG with MPIL NA Allreduce: 2.912260e-01
+CG with MPIL NA Allreduce: 2.713810e-01
+CG with MPIL NA Allreduce: 2.853379e-01
+CG + MPIL LA: 500 iter, norm 1.474920e-03
+CG with MPIL LA Allreduce: 2.951589e-01
+CG with MPIL LA Allreduce: 2.982431e-01
+CG with MPIL LA Allreduce: 2.804249e-01
+CG with MPIL LA Allreduce: 2.879756e-01
+CG with MPIL LA Allreduce: 2.985259e-01
+CG + MPIL RADIX: 500 iter, norm 1.391420e-03
+CG with MPIL RADIX Allreduce: 3.524946e-01
+CG with MPIL RADIX Allreduce: 3.105584e-01
+CG with MPIL RADIX Allreduce: 3.194817e-01
+CG with MPIL RADIX Allreduce: 3.130703e-01
+CG with MPIL RADIX Allreduce: 3.361436e-01
+CG + MPIL RD Pers: 500 iter, norm 1.700131e-03
+CG with MPIL RD Pers Allreduce: 3.405866e-01
+CG with MPIL RD Pers Allreduce: 3.126186e-01
+CG with MPIL RD Pers Allreduce: 3.044514e-01
+CG with MPIL RD Pers Allreduce: 3.110898e-01
+CG with MPIL RD Pers Allreduce: 2.909283e-01
+CG + MPIL NA Pers: 500 iter, norm 1.700131e-03
+CG with MPIL NA Pers Allreduce: 2.994929e-01
+CG with MPIL NA Pers Allreduce: 2.916335e-01
+CG with MPIL NA Pers Allreduce: 3.107212e-01
+CG with MPIL NA Pers Allreduce: 2.980079e-01
+CG with MPIL NA Pers Allreduce: 3.106678e-01
+CG + MPIL LA Pers: 500 iter, norm 1.700131e-03
+CG with MPIL LA Pers Allreduce: 3.250080e-01
+CG with MPIL LA Pers Allreduce: 2.908687e-01
+CG with MPIL LA Pers Allreduce: 3.344401e-01
+CG with MPIL LA Pers Allreduce: 2.944797e-01
+CG with MPIL LA Pers Allreduce: 2.922667e-01
+CG + MPIL RADIX Pers: 500 iter, norm 1.700131e-03
+CG with MPIL RADIX Pers Allreduce: 3.023246e-01
+CG with MPIL RADIX Pers Allreduce: 2.963345e-01
+CG with MPIL RADIX Pers Allreduce: 2.980719e-01
+CG with MPIL RADIX Pers Allreduce: 3.024032e-01
+CG with MPIL RADIX Pers Allreduce: 3.053164e-01
+CG + MPIL RMA Hier Pers: 500 iter, norm 1.700131e-03
+CG with MPIL RMA Hier Pers Allreduce: 2.946172e-01
+CG with MPIL RMA Hier Pers Allreduce: 2.894286e-01
+CG with MPIL RMA Hier Pers Allreduce: 2.955925e-01
+CG with MPIL RMA Hier Pers Allreduce: 3.057570e-01
+CG with MPIL RMA Hier Pers Allreduce: 2.967989e-01
+CG + MPIL RMA Hier EB Pers: 500 iter, norm 1.700131e-03
+CG with MPIL RMA Hier EB Pers Allreduce: 3.504919e-01
+CG with MPIL RMA Hier EB Pers Allreduce: 2.987888e-01
+CG with MPIL RMA Hier EB Pers Allreduce: 2.882253e-01
+CG with MPIL RMA Hier EB Pers Allreduce: 3.029778e-01
+CG with MPIL RMA Hier EB Pers Allreduce: 2.937785e-01
+Running with Pers Standard Neighbor Collectives
+CG + PMPI: 500 iter, norm 1.420867e-03
+CG with PMPI Allreduce: 1.034622e-01
+CG with PMPI Allreduce: 9.782488e-02
+CG with PMPI Allreduce: 1.047146e-01
+CG with PMPI Allreduce: 1.001366e-01
+CG with PMPI Allreduce: 9.980462e-02
+CG + MPIL RD: 500 iter, norm 1.700131e-03
+CG with MPIL RD Allreduce: 1.010119e-01
+CG with MPIL RD Allreduce: 1.044307e-01
+CG with MPIL RD Allreduce: 9.659995e-02
+CG with MPIL RD Allreduce: 1.130433e-01
+CG with MPIL RD Allreduce: 1.131496e-01
+CG + MPIL NA: 500 iter, norm 1.483904e-03
+CG with MPIL NA Allreduce: 8.677393e-02
+CG with MPIL NA Allreduce: 8.837600e-02
+CG with MPIL NA Allreduce: 9.277732e-02
+CG with MPIL NA Allreduce: 9.320234e-02
+CG with MPIL NA Allreduce: 8.723178e-02
+CG + MPIL LA: 500 iter, norm 1.474920e-03
+CG with MPIL LA Allreduce: 9.919299e-02
+CG with MPIL LA Allreduce: 9.270890e-02
+CG with MPIL LA Allreduce: 8.982604e-02
+CG with MPIL LA Allreduce: 9.681115e-02
+CG with MPIL LA Allreduce: 1.007019e-01
+CG + MPIL RADIX: 500 iter, norm 1.391420e-03
+CG with MPIL RADIX Allreduce: 1.108086e-01
+CG with MPIL RADIX Allreduce: 1.155542e-01
+CG with MPIL RADIX Allreduce: 1.088463e-01
+CG with MPIL RADIX Allreduce: 1.143411e-01
+CG with MPIL RADIX Allreduce: 1.133311e-01
+CG + MPIL RD Pers: 500 iter, norm 1.700131e-03
+CG with MPIL RD Pers Allreduce: 9.639612e-02
+CG with MPIL RD Pers Allreduce: 1.030200e-01
+CG with MPIL RD Pers Allreduce: 1.001859e-01
+CG with MPIL RD Pers Allreduce: 9.584053e-02
+CG with MPIL RD Pers Allreduce: 1.055372e-01
+CG + MPIL NA Pers: 500 iter, norm 1.700131e-03
+CG with MPIL NA Pers Allreduce: 9.750127e-02
+CG with MPIL NA Pers Allreduce: 9.516151e-02
+CG with MPIL NA Pers Allreduce: 1.017909e-01
+CG with MPIL NA Pers Allreduce: 1.111424e-01
+CG with MPIL NA Pers Allreduce: 9.596179e-02
+CG + MPIL LA Pers: 500 iter, norm 1.700131e-03
+CG with MPIL LA Pers Allreduce: 9.848371e-02
+CG with MPIL LA Pers Allreduce: 1.057706e-01
+CG with MPIL LA Pers Allreduce: 1.173417e-01
+CG with MPIL LA Pers Allreduce: 9.533386e-02
+CG with MPIL LA Pers Allreduce: 9.917587e-02
+CG + MPIL RADIX Pers: 500 iter, norm 1.700131e-03
+CG with MPIL RADIX Pers Allreduce: 9.310891e-02
+CG with MPIL RADIX Pers Allreduce: 1.014998e-01
+CG with MPIL RADIX Pers Allreduce: 1.002014e-01
+CG with MPIL RADIX Pers Allreduce: 9.902820e-02
+CG with MPIL RADIX Pers Allreduce: 9.884530e-02
+CG + MPIL RMA Hier Pers: 500 iter, norm 1.700131e-03
+CG with MPIL RMA Hier Pers Allreduce: 1.106563e-01
+CG with MPIL RMA Hier Pers Allreduce: 1.033328e-01
+CG with MPIL RMA Hier Pers Allreduce: 1.028021e-01
+CG with MPIL RMA Hier Pers Allreduce: 9.929843e-02
+CG with MPIL RMA Hier Pers Allreduce: 1.025346e-01
+CG + MPIL RMA Hier EB Pers: 500 iter, norm 1.700131e-03
+CG with MPIL RMA Hier EB Pers Allreduce: 1.117293e-01
+CG with MPIL RMA Hier EB Pers Allreduce: 9.777898e-02
+CG with MPIL RMA Hier EB Pers Allreduce: 9.485422e-02
+CG with MPIL RMA Hier EB Pers Allreduce: 1.074224e-01
+CG with MPIL RMA Hier EB Pers Allreduce: 8.744824e-02
+Running with Pers Locality Neighbor Collectives
+CG + PMPI: 500 iter, norm 1.420867e-03
+CG with PMPI Allreduce: 2.709492e-01
+CG with PMPI Allreduce: 2.665196e-01
+CG with PMPI Allreduce: 2.589831e-01
+CG with PMPI Allreduce: 2.650746e-01
+CG with PMPI Allreduce: 2.558283e-01
+CG + MPIL RD: 500 iter, norm 1.700131e-03
+CG with MPIL RD Allreduce: 2.532035e-01
+CG with MPIL RD Allreduce: 2.555773e-01
+CG with MPIL RD Allreduce: 2.606952e-01
+CG with MPIL RD Allreduce: 2.541860e-01
+CG with MPIL RD Allreduce: 2.496942e-01
+CG + MPIL NA: 500 iter, norm 1.483904e-03
+CG with MPIL NA Allreduce: 2.466947e-01
+CG with MPIL NA Allreduce: 2.350984e-01
+CG with MPIL NA Allreduce: 2.481585e-01
+CG with MPIL NA Allreduce: 2.804658e-01
+CG with MPIL NA Allreduce: 2.380955e-01
+CG + MPIL LA: 500 iter, norm 1.474920e-03
+CG with MPIL LA Allreduce: 2.515755e-01
+CG with MPIL LA Allreduce: 2.647327e-01
+CG with MPIL LA Allreduce: 2.520206e-01
+CG with MPIL LA Allreduce: 2.447986e-01
+CG with MPIL LA Allreduce: 2.552575e-01
+CG + MPIL RADIX: 500 iter, norm 1.391420e-03
+CG with MPIL RADIX Allreduce: 2.775469e-01
+CG with MPIL RADIX Allreduce: 2.700773e-01
+CG with MPIL RADIX Allreduce: 2.646469e-01
+CG with MPIL RADIX Allreduce: 2.743978e-01
+CG with MPIL RADIX Allreduce: 2.568723e-01
+CG + MPIL RD Pers: 500 iter, norm 1.700131e-03
+CG with MPIL RD Pers Allreduce: 2.657564e-01
+CG with MPIL RD Pers Allreduce: 2.535907e-01
+CG with MPIL RD Pers Allreduce: 2.550285e-01
+CG with MPIL RD Pers Allreduce: 2.937747e-01
+CG with MPIL RD Pers Allreduce: 2.710454e-01
+CG + MPIL NA Pers: 500 iter, norm 1.700131e-03
+CG with MPIL NA Pers Allreduce: 2.615377e-01
+CG with MPIL NA Pers Allreduce: 2.661645e-01
+CG with MPIL NA Pers Allreduce: 2.594284e-01
+CG with MPIL NA Pers Allreduce: 2.655570e-01
+CG with MPIL NA Pers Allreduce: 2.584233e-01
+CG + MPIL LA Pers: 500 iter, norm 1.700131e-03
+CG with MPIL LA Pers Allreduce: 2.489514e-01
+CG with MPIL LA Pers Allreduce: 2.584650e-01
+CG with MPIL LA Pers Allreduce: 2.583637e-01
+CG with MPIL LA Pers Allreduce: 2.698828e-01
+CG with MPIL LA Pers Allreduce: 2.492367e-01
+CG + MPIL RADIX Pers: 500 iter, norm 1.700131e-03
+CG with MPIL RADIX Pers Allreduce: 2.628028e-01
+CG with MPIL RADIX Pers Allreduce: 2.591731e-01
+CG with MPIL RADIX Pers Allreduce: 2.953845e-01
+CG with MPIL RADIX Pers Allreduce: 2.643947e-01
+CG with MPIL RADIX Pers Allreduce: 2.599864e-01
+CG + MPIL RMA Hier Pers: 500 iter, norm 1.700131e-03
+CG with MPIL RMA Hier Pers Allreduce: 2.597980e-01
+CG with MPIL RMA Hier Pers Allreduce: 2.554353e-01
+CG with MPIL RMA Hier Pers Allreduce: 2.491765e-01
+CG with MPIL RMA Hier Pers Allreduce: 2.622097e-01
+CG with MPIL RMA Hier Pers Allreduce: 2.702340e-01
+CG + MPIL RMA Hier EB Pers: 500 iter, norm 1.700131e-03
+CG with MPIL RMA Hier EB Pers Allreduce: 2.540887e-01
+CG with MPIL RMA Hier EB Pers Allreduce: 2.565656e-01
+CG with MPIL RMA Hier EB Pers Allreduce: 2.617662e-01
+CG with MPIL RMA Hier EB Pers Allreduce: 2.639531e-01
+CG with MPIL RMA Hier EB Pers Allreduce: 2.696711e-01
+/usr/workspace/bienz1/benchmark_mats/SPD/nd24k.pm
+srun --ntasks-per-node 112 -N 16 ./cg /usr/workspace/bienz1/benchmark_mats/SPD/nd24k.pm
+Running with Standard Neighbor Collectives
+CG + PMPI: 500 iter, norm 5.029565e-06
+CG with PMPI Allreduce: 1.940958e+00
+CG with PMPI Allreduce: 9.958397e-01
+CG with PMPI Allreduce: 1.781119e+00
+CG with PMPI Allreduce: 1.595017e+00
+CG with PMPI Allreduce: 3.707596e+00
+CG + MPIL RD: 500 iter, norm 5.411995e-06
+CG with MPIL RD Allreduce: 3.706883e+00
+CG with MPIL RD Allreduce: 2.105767e+00
+CG with MPIL RD Allreduce: 2.444509e+00
+CG with MPIL RD Allreduce: 1.773268e+00
+CG with MPIL RD Allreduce: 3.049506e+00
+CG + MPIL NA: 500 iter, norm 5.630789e-06
+CG with MPIL NA Allreduce: 2.753284e+00
+CG with MPIL NA Allreduce: 1.602636e+00
+CG with MPIL NA Allreduce: 2.590661e+00
+CG with MPIL NA Allreduce: 1.609341e+00
+CG with MPIL NA Allreduce: 2.252500e+00
+CG + MPIL LA: 500 iter, norm 5.074328e-06
+CG with MPIL LA Allreduce: 1.445432e+00
+CG with MPIL LA Allreduce: 1.625735e+00
+CG with MPIL LA Allreduce: 2.267042e+00
+CG with MPIL LA Allreduce: 1.614507e+00
+CG with MPIL LA Allreduce: 1.608537e+00
+CG + MPIL RADIX: 500 iter, norm 5.581051e-06
+CG with MPIL RADIX Allreduce: 2.111597e+00
+CG with MPIL RADIX Allreduce: 1.459098e+00
+CG with MPIL RADIX Allreduce: 2.443878e+00
+CG with MPIL RADIX Allreduce: 9.437044e-01
+CG with MPIL RADIX Allreduce: 1.107009e+00
+CG + MPIL RD Pers: 500 iter, norm 5.411995e-06
+CG with MPIL RD Pers Allreduce: 9.479061e-01
+CG with MPIL RD Pers Allreduce: 9.540342e-01
+CG with MPIL RD Pers Allreduce: 4.663513e-01
+CG with MPIL RD Pers Allreduce: 1.313811e+00
+CG with MPIL RD Pers Allreduce: 3.065105e+00
+CG + MPIL NA Pers: 500 iter, norm 5.411995e-06
+CG with MPIL NA Pers Allreduce: 2.582800e+00
+CG with MPIL NA Pers Allreduce: 2.751419e+00
+CG with MPIL NA Pers Allreduce: 2.755913e+00
+CG with MPIL NA Pers Allreduce: 2.971511e+00
+CG with MPIL NA Pers Allreduce: 1.764574e+00
+CG + MPIL LA Pers: 500 iter, norm 5.411995e-06
+CG with MPIL LA Pers Allreduce: 1.138942e+00
+CG with MPIL LA Pers Allreduce: 2.412142e+00
+CG with MPIL LA Pers Allreduce: 4.516940e+00
+CG with MPIL LA Pers Allreduce: 2.582207e+00
+CG with MPIL LA Pers Allreduce: 2.899808e+00
+CG + MPIL RADIX Pers: 500 iter, norm 5.411995e-06
+CG with MPIL RADIX Pers Allreduce: 1.628288e+00
+CG with MPIL RADIX Pers Allreduce: 2.415394e+00
+CG with MPIL RADIX Pers Allreduce: 1.935822e+00
+CG with MPIL RADIX Pers Allreduce: 2.740910e+00
+CG with MPIL RADIX Pers Allreduce: 2.116681e+00
+CG + MPIL RMA Hier Pers: 500 iter, norm 5.411995e-06
+CG with MPIL RMA Hier Pers Allreduce: 2.746886e+00
+CG with MPIL RMA Hier Pers Allreduce: 2.091259e+00
+CG with MPIL RMA Hier Pers Allreduce: 1.939574e+00
+CG with MPIL RMA Hier Pers Allreduce: 2.422391e+00
+CG with MPIL RMA Hier Pers Allreduce: 1.283021e+00
+CG + MPIL RMA Hier EB Pers: 500 iter, norm 5.411995e-06
+CG with MPIL RMA Hier EB Pers Allreduce: 2.927737e+00
+CG with MPIL RMA Hier EB Pers Allreduce: 1.605542e+00
+CG with MPIL RMA Hier EB Pers Allreduce: 2.094745e+00
+CG with MPIL RMA Hier EB Pers Allreduce: 1.289349e+00
+CG with MPIL RMA Hier EB Pers Allreduce: 1.768474e+00
+Running with Locality Neighbor Collectives
+CG + PMPI: 500 iter, norm 5.029565e-06
+CG with PMPI Allreduce: 5.276146e-01
+CG with PMPI Allreduce: 5.311734e-01
+CG with PMPI Allreduce: 7.146099e-01
+CG with PMPI Allreduce: 3.982434e-01
+CG with PMPI Allreduce: 5.550912e-01
+CG + MPIL RD: 500 iter, norm 5.411995e-06
+CG with MPIL RD Allreduce: 8.716057e-01
+CG with MPIL RD Allreduce: 1.025099e+00
+CG with MPIL RD Allreduce: 1.012301e+00
+CG with MPIL RD Allreduce: 1.049379e+00
+CG with MPIL RD Allreduce: 3.770645e-01
+CG + MPIL NA: 500 iter, norm 5.630789e-06
+CG with MPIL NA Allreduce: 6.824949e-01
+CG with MPIL NA Allreduce: 1.130777e+00
+CG with MPIL NA Allreduce: 3.756820e-01
+CG with MPIL NA Allreduce: 6.495667e-01
+CG with MPIL NA Allreduce: 3.868598e-01
+CG + MPIL LA: 500 iter, norm 5.074328e-06
+CG with MPIL LA Allreduce: 1.012629e+00
+CG with MPIL LA Allreduce: 1.869656e+00
+CG with MPIL LA Allreduce: 6.930732e-01
+CG with MPIL LA Allreduce: 1.455667e+00
+CG with MPIL LA Allreduce: 5.618500e-01
+CG + MPIL RADIX: 500 iter, norm 5.581051e-06
+CG with MPIL RADIX Allreduce: 5.548916e-01
+CG with MPIL RADIX Allreduce: 5.776495e-01
+CG with MPIL RADIX Allreduce: 1.044367e+00
+CG with MPIL RADIX Allreduce: 5.550621e-01
+CG with MPIL RADIX Allreduce: 8.745179e-01
+CG + MPIL RD Pers: 500 iter, norm 5.411995e-06
+CG with MPIL RD Pers Allreduce: 5.354722e-01
+CG with MPIL RD Pers Allreduce: 7.890700e-01
+CG with MPIL RD Pers Allreduce: 7.123150e-01
+CG with MPIL RD Pers Allreduce: 1.006044e+00
+CG with MPIL RD Pers Allreduce: 7.802139e-01
+CG + MPIL NA Pers: 500 iter, norm 5.411995e-06
+CG with MPIL NA Pers Allreduce: 8.381354e-01
+CG with MPIL NA Pers Allreduce: 1.321197e+00
+CG with MPIL NA Pers Allreduce: 5.121316e-01
+CG with MPIL NA Pers Allreduce: 3.911420e-01
+CG with MPIL NA Pers Allreduce: 3.638807e-01
+CG + MPIL LA Pers: 500 iter, norm 5.411995e-06
+CG with MPIL LA Pers Allreduce: 7.306997e-01
+CG with MPIL LA Pers Allreduce: 8.530337e-01
+CG with MPIL LA Pers Allreduce: 3.859262e-01
+CG with MPIL LA Pers Allreduce: 3.828424e-01
+CG with MPIL LA Pers Allreduce: 8.729897e-01
+CG + MPIL RADIX Pers: 500 iter, norm 5.411995e-06
+CG with MPIL RADIX Pers Allreduce: 5.145075e-01
+CG with MPIL RADIX Pers Allreduce: 3.822614e-01
+CG with MPIL RADIX Pers Allreduce: 7.235741e-01
+CG with MPIL RADIX Pers Allreduce: 1.036876e+00
+CG with MPIL RADIX Pers Allreduce: 8.562187e-01
+CG + MPIL RMA Hier Pers: 500 iter, norm 5.411995e-06
+CG with MPIL RMA Hier Pers Allreduce: 6.880218e-01
+CG with MPIL RMA Hier Pers Allreduce: 7.525216e-01
+CG with MPIL RMA Hier Pers Allreduce: 5.407238e-01
+CG with MPIL RMA Hier Pers Allreduce: 8.321117e-01
+CG with MPIL RMA Hier Pers Allreduce: 5.328383e-01
+CG + MPIL RMA Hier EB Pers: 500 iter, norm 5.411995e-06
+CG with MPIL RMA Hier EB Pers Allreduce: 5.526763e-01
+CG with MPIL RMA Hier EB Pers Allreduce: 7.093427e-01
+CG with MPIL RMA Hier EB Pers Allreduce: 5.653590e-01
+CG with MPIL RMA Hier EB Pers Allreduce: 3.925180e-01
+CG with MPIL RMA Hier EB Pers Allreduce: 3.870981e-01
+Running with Pers Standard Neighbor Collectives
+CG + PMPI: 500 iter, norm 5.029565e-06
+CG with PMPI Allreduce: 2.555974e+00
+CG with PMPI Allreduce: 1.748915e+00
+CG with PMPI Allreduce: 2.100253e+00
+CG with PMPI Allreduce: 1.785147e+00
+CG with PMPI Allreduce: 1.761418e+00
+CG + MPIL RD: 500 iter, norm 5.411995e-06
+CG with MPIL RD Allreduce: 3.567681e+00
+CG with MPIL RD Allreduce: 1.618883e+00
+CG with MPIL RD Allreduce: 1.113687e+00
+CG with MPIL RD Allreduce: 9.668714e-01
+CG with MPIL RD Allreduce: 1.922174e+00
+CG + MPIL NA: 500 iter, norm 5.630789e-06
+CG with MPIL NA Allreduce: 2.904129e+00
+CG with MPIL NA Allreduce: 7.938623e-01
+CG with MPIL NA Allreduce: 2.895522e+00
+CG with MPIL NA Allreduce: 2.082856e+00
+CG with MPIL NA Allreduce: 1.759054e+00
+CG + MPIL LA: 500 iter, norm 5.074328e-06
+CG with MPIL LA Allreduce: 9.437766e-01
+CG with MPIL LA Allreduce: 4.736901e-01
+CG with MPIL LA Allreduce: 7.846584e-01
+CG with MPIL LA Allreduce: 1.451920e+00
+CG with MPIL LA Allreduce: 4.609821e-01
+CG + MPIL RADIX: 500 iter, norm 5.581051e-06
+CG with MPIL RADIX Allreduce: 7.797198e-01
+CG with MPIL RADIX Allreduce: 1.314782e-01
+CG with MPIL RADIX Allreduce: 7.819546e-01
+CG with MPIL RADIX Allreduce: 6.340902e-01
+CG with MPIL RADIX Allreduce: 8.034108e-01
+CG + MPIL RD Pers: 500 iter, norm 5.411995e-06
+CG with MPIL RD Pers Allreduce: 1.793195e+00
+CG with MPIL RD Pers Allreduce: 2.112295e+00
+CG with MPIL RD Pers Allreduce: 1.625920e+00
+CG with MPIL RD Pers Allreduce: 2.247294e+00
+CG with MPIL RD Pers Allreduce: 2.580203e+00
+CG + MPIL NA Pers: 500 iter, norm 5.411995e-06
+CG with MPIL NA Pers Allreduce: 2.103538e+00
+CG with MPIL NA Pers Allreduce: 1.766325e+00
+CG with MPIL NA Pers Allreduce: 2.750811e+00
+CG with MPIL NA Pers Allreduce: 1.950588e+00
+CG with MPIL NA Pers Allreduce: 2.568782e+00
+CG + MPIL LA Pers: 500 iter, norm 5.411995e-06
+CG with MPIL LA Pers Allreduce: 1.300504e+00
+CG with MPIL LA Pers Allreduce: 2.419788e+00
+CG with MPIL LA Pers Allreduce: 1.260189e+00
+CG with MPIL LA Pers Allreduce: 1.441349e+00
+CG with MPIL LA Pers Allreduce: 2.446609e+00
+CG + MPIL RADIX Pers: 500 iter, norm 5.411995e-06
+CG with MPIL RADIX Pers Allreduce: 3.067635e+00
+CG with MPIL RADIX Pers Allreduce: 2.089613e+00
+CG with MPIL RADIX Pers Allreduce: 1.938589e+00
+CG with MPIL RADIX Pers Allreduce: 1.314312e+00
+CG with MPIL RADIX Pers Allreduce: 2.757724e+00
+CG + MPIL RMA Hier Pers: 500 iter, norm 5.411995e-06
+CG with MPIL RMA Hier Pers Allreduce: 3.067222e+00
+CG with MPIL RMA Hier Pers Allreduce: 3.706179e+00
+CG with MPIL RMA Hier Pers Allreduce: 2.738235e+00
+CG with MPIL RMA Hier Pers Allreduce: 2.261369e+00
+CG with MPIL RMA Hier Pers Allreduce: 1.624178e+00
+CG + MPIL RMA Hier EB Pers: 500 iter, norm 5.411995e-06
+CG with MPIL RMA Hier EB Pers Allreduce: 2.253987e+00
+CG with MPIL RMA Hier EB Pers Allreduce: 2.423990e+00
+CG with MPIL RMA Hier EB Pers Allreduce: 2.768916e+00
+CG with MPIL RMA Hier EB Pers Allreduce: 2.250818e+00
+CG with MPIL RMA Hier EB Pers Allreduce: 2.575810e+00
+Running with Pers Locality Neighbor Collectives
+CG + PMPI: 500 iter, norm 5.029565e-06
+CG with PMPI Allreduce: 3.311308e-01
+CG with PMPI Allreduce: 3.288519e-01
+CG with PMPI Allreduce: 3.304399e-01
+CG with PMPI Allreduce: 3.290593e-01
+CG with PMPI Allreduce: 3.274115e-01
+CG + MPIL RD: 500 iter, norm 5.411995e-06
+CG with MPIL RD Allreduce: 3.236594e-01
+CG with MPIL RD Allreduce: 3.243259e-01
+CG with MPIL RD Allreduce: 3.269167e-01
+CG with MPIL RD Allreduce: 3.253409e-01
+CG with MPIL RD Allreduce: 3.292536e-01
+CG + MPIL NA: 500 iter, norm 5.630789e-06
+CG with MPIL NA Allreduce: 3.233943e-01
+CG with MPIL NA Allreduce: 3.443051e-01
+CG with MPIL NA Allreduce: 3.259049e-01
+CG with MPIL NA Allreduce: 3.333444e-01
+CG with MPIL NA Allreduce: 3.212427e-01
+CG + MPIL LA: 500 iter, norm 5.074328e-06
+CG with MPIL LA Allreduce: 3.209022e-01
+CG with MPIL LA Allreduce: 3.221899e-01
+CG with MPIL LA Allreduce: 3.202038e-01
+CG with MPIL LA Allreduce: 3.246015e-01
+CG with MPIL LA Allreduce: 3.248533e-01
+CG + MPIL RADIX: 500 iter, norm 5.581051e-06
+CG with MPIL RADIX Allreduce: 3.354286e-01
+CG with MPIL RADIX Allreduce: 3.312538e-01
+CG with MPIL RADIX Allreduce: 3.391542e-01
+CG with MPIL RADIX Allreduce: 3.351545e-01
+CG with MPIL RADIX Allreduce: 3.788174e-01
+CG + MPIL RD Pers: 500 iter, norm 5.411995e-06
+CG with MPIL RD Pers Allreduce: 3.274218e-01
+CG with MPIL RD Pers Allreduce: 3.293680e-01
+CG with MPIL RD Pers Allreduce: 3.228783e-01
+CG with MPIL RD Pers Allreduce: 3.285208e-01
+CG with MPIL RD Pers Allreduce: 3.304974e-01
+CG + MPIL NA Pers: 500 iter, norm 5.411995e-06
+CG with MPIL NA Pers Allreduce: 3.304950e-01
+CG with MPIL NA Pers Allreduce: 3.278765e-01
+CG with MPIL NA Pers Allreduce: 3.300432e-01
+CG with MPIL NA Pers Allreduce: 3.248150e-01
+CG with MPIL NA Pers Allreduce: 3.296915e-01
+CG + MPIL LA Pers: 500 iter, norm 5.411995e-06
+CG with MPIL LA Pers Allreduce: 3.265358e-01
+CG with MPIL LA Pers Allreduce: 3.434173e-01
+CG with MPIL LA Pers Allreduce: 3.251344e-01
+CG with MPIL LA Pers Allreduce: 3.308265e-01
+CG with MPIL LA Pers Allreduce: 3.440563e-01
+CG + MPIL RADIX Pers: 500 iter, norm 5.411995e-06
+CG with MPIL RADIX Pers Allreduce: 3.237443e-01
+CG with MPIL RADIX Pers Allreduce: 3.346047e-01
+CG with MPIL RADIX Pers Allreduce: 3.282942e-01
+CG with MPIL RADIX Pers Allreduce: 3.290268e-01
+CG with MPIL RADIX Pers Allreduce: 3.312756e-01
+CG + MPIL RMA Hier Pers: 500 iter, norm 5.411995e-06
+CG with MPIL RMA Hier Pers Allreduce: 3.221975e-01
+CG with MPIL RMA Hier Pers Allreduce: 3.262271e-01
+CG with MPIL RMA Hier Pers Allreduce: 3.304720e-01
+CG with MPIL RMA Hier Pers Allreduce: 3.220761e-01
+CG with MPIL RMA Hier Pers Allreduce: 3.272816e-01
+CG + MPIL RMA Hier EB Pers: 500 iter, norm 5.411995e-06
+CG with MPIL RMA Hier EB Pers Allreduce: 3.278907e-01
+CG with MPIL RMA Hier EB Pers Allreduce: 3.398435e-01
+CG with MPIL RMA Hier EB Pers Allreduce: 3.346572e-01
+CG with MPIL RMA Hier EB Pers Allreduce: 3.264140e-01
+CG with MPIL RMA Hier EB Pers Allreduce: 3.310655e-01
+/usr/workspace/bienz1/benchmark_mats/SPD/PFlow_742.pm
+srun --ntasks-per-node 112 -N 16 ./cg /usr/workspace/bienz1/benchmark_mats/SPD/PFlow_742.pm
+Running with Standard Neighbor Collectives
+CG + PMPI: 500 iter, norm 6.900147e-04
+CG with PMPI Allreduce: 5.852560e-02
+CG with PMPI Allreduce: 6.318954e-02
+CG with PMPI Allreduce: 5.643514e-02
+CG with PMPI Allreduce: 5.802307e-02
+CG with PMPI Allreduce: 5.687622e-02
+CG + MPIL RD: 500 iter, norm 6.837169e-04
+CG with MPIL RD Allreduce: 5.772340e-02
+CG with MPIL RD Allreduce: 6.774650e-02
+CG with MPIL RD Allreduce: 5.906476e-02
+CG with MPIL RD Allreduce: 7.022644e-02
+CG with MPIL RD Allreduce: 6.298760e-02
+CG + MPIL NA: 500 iter, norm 6.803590e-04
+CG with MPIL NA Allreduce: 5.405785e-02
+CG with MPIL NA Allreduce: 5.480410e-02
+CG with MPIL NA Allreduce: 5.457708e-02
+CG with MPIL NA Allreduce: 5.195045e-02
+CG with MPIL NA Allreduce: 6.121389e-02
+CG + MPIL LA: 500 iter, norm 6.824161e-04
+CG with MPIL LA Allreduce: 5.430703e-02
+CG with MPIL LA Allreduce: 5.697189e-02
+CG with MPIL LA Allreduce: 5.650730e-02
+CG with MPIL LA Allreduce: 5.568090e-02
+CG with MPIL LA Allreduce: 5.345631e-02
+CG + MPIL RADIX: 500 iter, norm 6.858239e-04
+CG with MPIL RADIX Allreduce: 7.627292e-02
+CG with MPIL RADIX Allreduce: 7.602102e-02
+CG with MPIL RADIX Allreduce: 7.496384e-02
+CG with MPIL RADIX Allreduce: 7.308716e-02
+CG with MPIL RADIX Allreduce: 7.827284e-02
+CG + MPIL RD Pers: 500 iter, norm 6.837169e-04
+CG with MPIL RD Pers Allreduce: 6.114024e-02
+CG with MPIL RD Pers Allreduce: 6.074743e-02
+CG with MPIL RD Pers Allreduce: 6.624313e-02
+CG with MPIL RD Pers Allreduce: 6.245065e-02
+CG with MPIL RD Pers Allreduce: 6.350017e-02
+CG + MPIL NA Pers: 500 iter, norm 6.837169e-04
+CG with MPIL NA Pers Allreduce: 6.145467e-02
+CG with MPIL NA Pers Allreduce: 5.907234e-02
+CG with MPIL NA Pers Allreduce: 7.028969e-02
+CG with MPIL NA Pers Allreduce: 7.045029e-02
+CG with MPIL NA Pers Allreduce: 5.881983e-02
+CG + MPIL LA Pers: 500 iter, norm 6.837169e-04
+CG with MPIL LA Pers Allreduce: 6.261479e-02
+CG with MPIL LA Pers Allreduce: 6.217520e-02
+CG with MPIL LA Pers Allreduce: 6.428246e-02
+CG with MPIL LA Pers Allreduce: 5.944755e-02
+CG with MPIL LA Pers Allreduce: 6.098321e-02
+CG + MPIL RADIX Pers: 500 iter, norm 6.837169e-04
+CG with MPIL RADIX Pers Allreduce: 6.563986e-02
+CG with MPIL RADIX Pers Allreduce: 5.846976e-02
+CG with MPIL RADIX Pers Allreduce: 6.599371e-02
+CG with MPIL RADIX Pers Allreduce: 6.555508e-02
+CG with MPIL RADIX Pers Allreduce: 6.762890e-02
+CG + MPIL RMA Hier Pers: 500 iter, norm 6.837169e-04
+CG with MPIL RMA Hier Pers Allreduce: 5.781947e-02
+CG with MPIL RMA Hier Pers Allreduce: 6.706805e-02
+CG with MPIL RMA Hier Pers Allreduce: 6.872396e-02
+CG with MPIL RMA Hier Pers Allreduce: 6.549783e-02
+CG with MPIL RMA Hier Pers Allreduce: 6.309414e-02
+CG + MPIL RMA Hier EB Pers: 500 iter, norm 6.837169e-04
+CG with MPIL RMA Hier EB Pers Allreduce: 5.254486e-02
+CG with MPIL RMA Hier EB Pers Allreduce: 6.509049e-02
+CG with MPIL RMA Hier EB Pers Allreduce: 6.598073e-02
+CG with MPIL RMA Hier EB Pers Allreduce: 6.323260e-02
+CG with MPIL RMA Hier EB Pers Allreduce: 6.391487e-02
+Running with Locality Neighbor Collectives
+CG + PMPI: 500 iter, norm 6.900147e-04
+CG with PMPI Allreduce: 3.060943e-01
+CG with PMPI Allreduce: 2.970141e-01
+CG with PMPI Allreduce: 3.071679e-01
+CG with PMPI Allreduce: 3.005502e-01
+CG with PMPI Allreduce: 3.027433e-01
+CG + MPIL RD: 500 iter, norm 6.837169e-04
+CG with MPIL RD Allreduce: 3.048776e-01
+CG with MPIL RD Allreduce: 3.007984e-01
+CG with MPIL RD Allreduce: 3.527432e-01
+CG with MPIL RD Allreduce: 3.062467e-01
+CG with MPIL RD Allreduce: 3.064666e-01
+CG + MPIL NA: 500 iter, norm 6.803590e-04
+CG with MPIL NA Allreduce: 2.761461e-01
+CG with MPIL NA Allreduce: 2.615519e-01
+CG with MPIL NA Allreduce: 2.610075e-01
+CG with MPIL NA Allreduce: 2.589495e-01
+CG with MPIL NA Allreduce: 2.655156e-01
+CG + MPIL LA: 500 iter, norm 6.824161e-04
+CG with MPIL LA Allreduce: 2.917849e-01
+CG with MPIL LA Allreduce: 2.677163e-01
+CG with MPIL LA Allreduce: 2.638464e-01
+CG with MPIL LA Allreduce: 2.731886e-01
+CG with MPIL LA Allreduce: 2.693735e-01
+CG + MPIL RADIX: 500 iter, norm 6.858239e-04
+CG with MPIL RADIX Allreduce: 2.874140e-01
+CG with MPIL RADIX Allreduce: 2.946990e-01
+CG with MPIL RADIX Allreduce: 3.347678e-01
+CG with MPIL RADIX Allreduce: 2.916199e-01
+CG with MPIL RADIX Allreduce: 3.021280e-01
+CG + MPIL RD Pers: 500 iter, norm 6.837169e-04
+CG with MPIL RD Pers Allreduce: 2.771755e-01
+CG with MPIL RD Pers Allreduce: 2.845908e-01
+CG with MPIL RD Pers Allreduce: 2.797081e-01
+CG with MPIL RD Pers Allreduce: 2.973177e-01
+CG with MPIL RD Pers Allreduce: 2.835897e-01
+CG + MPIL NA Pers: 500 iter, norm 6.837169e-04
+CG with MPIL NA Pers Allreduce: 2.808060e-01
+CG with MPIL NA Pers Allreduce: 2.764267e-01
+CG with MPIL NA Pers Allreduce: 2.847208e-01
+CG with MPIL NA Pers Allreduce: 2.876683e-01
+CG with MPIL NA Pers Allreduce: 2.826578e-01
+CG + MPIL LA Pers: 500 iter, norm 6.837169e-04
+CG with MPIL LA Pers Allreduce: 2.811158e-01
+CG with MPIL LA Pers Allreduce: 2.752829e-01
+CG with MPIL LA Pers Allreduce: 3.309516e-01
+CG with MPIL LA Pers Allreduce: 2.726392e-01
+CG with MPIL LA Pers Allreduce: 2.741795e-01
+CG + MPIL RADIX Pers: 500 iter, norm 6.837169e-04
+CG with MPIL RADIX Pers Allreduce: 2.725009e-01
+CG with MPIL RADIX Pers Allreduce: 3.136754e-01
+CG with MPIL RADIX Pers Allreduce: 2.777642e-01
+CG with MPIL RADIX Pers Allreduce: 2.800321e-01
+CG with MPIL RADIX Pers Allreduce: 2.860427e-01
+CG + MPIL RMA Hier Pers: 500 iter, norm 6.837169e-04
+CG with MPIL RMA Hier Pers Allreduce: 2.757702e-01
+CG with MPIL RMA Hier Pers Allreduce: 2.606464e-01
+CG with MPIL RMA Hier Pers Allreduce: 2.808818e-01
+CG with MPIL RMA Hier Pers Allreduce: 2.810350e-01
+CG with MPIL RMA Hier Pers Allreduce: 2.759227e-01
+CG + MPIL RMA Hier EB Pers: 500 iter, norm 6.837169e-04
+CG with MPIL RMA Hier EB Pers Allreduce: 2.817423e-01
+CG with MPIL RMA Hier EB Pers Allreduce: 2.679247e-01
+CG with MPIL RMA Hier EB Pers Allreduce: 3.155081e-01
+CG with MPIL RMA Hier EB Pers Allreduce: 2.740357e-01
+CG with MPIL RMA Hier EB Pers Allreduce: 2.784429e-01
+Running with Pers Standard Neighbor Collectives
+CG + PMPI: 500 iter, norm 6.900147e-04
+CG with PMPI Allreduce: 5.897811e-02
+CG with PMPI Allreduce: 5.701784e-02
+CG with PMPI Allreduce: 5.501838e-02
+CG with PMPI Allreduce: 5.507828e-02
+CG with PMPI Allreduce: 5.267603e-02
+CG + MPIL RD: 500 iter, norm 6.837169e-04
+CG with MPIL RD Allreduce: 6.545350e-02
+CG with MPIL RD Allreduce: 6.122426e-02
+CG with MPIL RD Allreduce: 6.266981e-02
+CG with MPIL RD Allreduce: 5.791062e-02
+CG with MPIL RD Allreduce: 6.176908e-02
+CG + MPIL NA: 500 iter, norm 6.803590e-04
+CG with MPIL NA Allreduce: 5.152382e-02
+CG with MPIL NA Allreduce: 6.187794e-02
+CG with MPIL NA Allreduce: 5.529057e-02
+CG with MPIL NA Allreduce: 5.255526e-02
+CG with MPIL NA Allreduce: 5.257098e-02
+CG + MPIL LA: 500 iter, norm 6.824161e-04
+CG with MPIL LA Allreduce: 5.316947e-02
+CG with MPIL LA Allreduce: 5.366061e-02
+CG with MPIL LA Allreduce: 5.554599e-02
+CG with MPIL LA Allreduce: 5.278047e-02
+CG with MPIL LA Allreduce: 5.509597e-02
+CG + MPIL RADIX: 500 iter, norm 6.858239e-04
+CG with MPIL RADIX Allreduce: 7.291322e-02
+CG with MPIL RADIX Allreduce: 6.821333e-02
+CG with MPIL RADIX Allreduce: 7.813622e-02
+CG with MPIL RADIX Allreduce: 8.094519e-02
+CG with MPIL RADIX Allreduce: 7.315467e-02
+CG + MPIL RD Pers: 500 iter, norm 6.837169e-04
+CG with MPIL RD Pers Allreduce: 6.457013e-02
+CG with MPIL RD Pers Allreduce: 6.135721e-02
+CG with MPIL RD Pers Allreduce: 5.866581e-02
+CG with MPIL RD Pers Allreduce: 6.479741e-02
+CG with MPIL RD Pers Allreduce: 5.937066e-02
+CG + MPIL NA Pers: 500 iter, norm 6.837169e-04
+CG with MPIL NA Pers Allreduce: 5.990374e-02
+CG with MPIL NA Pers Allreduce: 6.151089e-02
+CG with MPIL NA Pers Allreduce: 6.257532e-02
+CG with MPIL NA Pers Allreduce: 6.271299e-02
+CG with MPIL NA Pers Allreduce: 6.024488e-02
+CG + MPIL LA Pers: 500 iter, norm 6.837169e-04
+CG with MPIL LA Pers Allreduce: 6.586184e-02
+CG with MPIL LA Pers Allreduce: 6.096705e-02
+CG with MPIL LA Pers Allreduce: 6.577795e-02
+CG with MPIL LA Pers Allreduce: 6.107712e-02
+CG with MPIL LA Pers Allreduce: 6.409356e-02
+CG + MPIL RADIX Pers: 500 iter, norm 6.837169e-04
+CG with MPIL RADIX Pers Allreduce: 6.245674e-02
+CG with MPIL RADIX Pers Allreduce: 6.153935e-02
+CG with MPIL RADIX Pers Allreduce: 6.475618e-02
+CG with MPIL RADIX Pers Allreduce: 5.963186e-02
+CG with MPIL RADIX Pers Allreduce: 6.091876e-02
+CG + MPIL RMA Hier Pers: 500 iter, norm 6.837169e-04
+CG with MPIL RMA Hier Pers Allreduce: 6.316806e-02
+CG with MPIL RMA Hier Pers Allreduce: 7.281527e-02
+CG with MPIL RMA Hier Pers Allreduce: 5.324797e-02
+CG with MPIL RMA Hier Pers Allreduce: 6.208448e-02
+CG with MPIL RMA Hier Pers Allreduce: 6.141154e-02
+CG + MPIL RMA Hier EB Pers: 500 iter, norm 6.837169e-04
+CG with MPIL RMA Hier EB Pers Allreduce: 6.063932e-02
+CG with MPIL RMA Hier EB Pers Allreduce: 6.520245e-02
+CG with MPIL RMA Hier EB Pers Allreduce: 5.942960e-02
+CG with MPIL RMA Hier EB Pers Allreduce: 6.249822e-02
+CG with MPIL RMA Hier EB Pers Allreduce: 6.806581e-02
+Running with Pers Locality Neighbor Collectives
+CG + PMPI: 500 iter, norm 6.900147e-04
+CG with PMPI Allreduce: 1.020551e-01
+CG with PMPI Allreduce: 1.017378e-01
+CG with PMPI Allreduce: 9.703277e-02
+CG with PMPI Allreduce: 1.015024e-01
+CG with PMPI Allreduce: 1.004062e-01
+CG + MPIL RD: 500 iter, norm 6.837169e-04
+CG with MPIL RD Allreduce: 1.060861e-01
+CG with MPIL RD Allreduce: 1.218873e-01
+CG with MPIL RD Allreduce: 1.116601e-01
+CG with MPIL RD Allreduce: 9.661530e-02
+CG with MPIL RD Allreduce: 1.045421e-01
+CG + MPIL NA: 500 iter, norm 6.803590e-04
+CG with MPIL NA Allreduce: 9.196155e-02
+CG with MPIL NA Allreduce: 1.003663e-01
+CG with MPIL NA Allreduce: 9.474959e-02
+CG with MPIL NA Allreduce: 9.791252e-02
+CG with MPIL NA Allreduce: 9.756222e-02
+CG + MPIL LA: 500 iter, norm 6.824161e-04
+CG with MPIL LA Allreduce: 9.824142e-02
+CG with MPIL LA Allreduce: 1.026784e-01
+CG with MPIL LA Allreduce: 9.950191e-02
+CG with MPIL LA Allreduce: 1.006065e-01
+CG with MPIL LA Allreduce: 1.013117e-01
+CG + MPIL RADIX: 500 iter, norm 6.858239e-04
+CG with MPIL RADIX Allreduce: 1.165767e-01
+CG with MPIL RADIX Allreduce: 1.256642e-01
+CG with MPIL RADIX Allreduce: 1.164823e-01
+CG with MPIL RADIX Allreduce: 1.171818e-01
+CG with MPIL RADIX Allreduce: 1.114923e-01
+CG + MPIL RD Pers: 500 iter, norm 6.837169e-04
+CG with MPIL RD Pers Allreduce: 1.102338e-01
+CG with MPIL RD Pers Allreduce: 1.055208e-01
+CG with MPIL RD Pers Allreduce: 1.018993e-01
+CG with MPIL RD Pers Allreduce: 1.064163e-01
+CG with MPIL RD Pers Allreduce: 1.018512e-01
+CG + MPIL NA Pers: 500 iter, norm 6.837169e-04
+CG with MPIL NA Pers Allreduce: 1.045486e-01
+CG with MPIL NA Pers Allreduce: 1.059288e-01
+CG with MPIL NA Pers Allreduce: 1.106026e-01
+CG with MPIL NA Pers Allreduce: 1.060715e-01
+CG with MPIL NA Pers Allreduce: 1.202362e-01
+CG + MPIL LA Pers: 500 iter, norm 6.837169e-04
+CG with MPIL LA Pers Allreduce: 1.038027e-01
+CG with MPIL LA Pers Allreduce: 1.122572e-01
+CG with MPIL LA Pers Allreduce: 1.041585e-01
+CG with MPIL LA Pers Allreduce: 1.072037e-01
+CG with MPIL LA Pers Allreduce: 1.027138e-01
+CG + MPIL RADIX Pers: 500 iter, norm 6.837169e-04
+CG with MPIL RADIX Pers Allreduce: 1.073938e-01
+CG with MPIL RADIX Pers Allreduce: 1.061387e-01
+CG with MPIL RADIX Pers Allreduce: 1.078731e-01
+CG with MPIL RADIX Pers Allreduce: 1.056676e-01
+CG with MPIL RADIX Pers Allreduce: 1.079276e-01
+CG + MPIL RMA Hier Pers: 500 iter, norm 6.837169e-04
+CG with MPIL RMA Hier Pers Allreduce: 1.048114e-01
+CG with MPIL RMA Hier Pers Allreduce: 1.023884e-01
+CG with MPIL RMA Hier Pers Allreduce: 1.232747e-01
+CG with MPIL RMA Hier Pers Allreduce: 1.031762e-01
+CG with MPIL RMA Hier Pers Allreduce: 1.052014e-01
+CG + MPIL RMA Hier EB Pers: 500 iter, norm 6.837169e-04
+CG with MPIL RMA Hier EB Pers Allreduce: 1.109698e-01
+CG with MPIL RMA Hier EB Pers Allreduce: 1.101462e-01
+CG with MPIL RMA Hier EB Pers Allreduce: 1.051950e-01
+CG with MPIL RMA Hier EB Pers Allreduce: 1.066063e-01
+CG with MPIL RMA Hier EB Pers Allreduce: 1.029088e-01
+/usr/workspace/bienz1/benchmark_mats/SPD/StocF-1465.pm
+srun --ntasks-per-node 112 -N 16 ./cg /usr/workspace/bienz1/benchmark_mats/SPD/StocF-1465.pm
+Running with Standard Neighbor Collectives
+CG + PMPI: 500 iter, norm 1.349125e-03
+CG with PMPI Allreduce: 1.140658e-01
+CG with PMPI Allreduce: 1.196363e-01
+CG with PMPI Allreduce: 1.133002e-01
+CG with PMPI Allreduce: 1.163135e-01
+CG with PMPI Allreduce: 1.262822e-01
+CG + MPIL RD: 500 iter, norm 2.029771e-03
+CG with MPIL RD Allreduce: 1.143080e-01
+CG with MPIL RD Allreduce: 1.196426e-01
+CG with MPIL RD Allreduce: 1.124315e-01
+CG with MPIL RD Allreduce: 1.160768e-01
+CG with MPIL RD Allreduce: 1.127903e-01
+CG + MPIL NA: 500 iter, norm 1.891433e-03
+CG with MPIL NA Allreduce: 1.052433e-01
+CG with MPIL NA Allreduce: 1.044838e-01
+CG with MPIL NA Allreduce: 1.159357e-01
+CG with MPIL NA Allreduce: 1.037735e-01
+CG with MPIL NA Allreduce: 1.007040e-01
+CG + MPIL LA: 500 iter, norm 1.025754e-03
+CG with MPIL LA Allreduce: 1.061510e-01
+CG with MPIL LA Allreduce: 1.126202e-01
+CG with MPIL LA Allreduce: 1.068154e-01
+CG with MPIL LA Allreduce: 1.061715e-01
+CG with MPIL LA Allreduce: 1.143851e-01
+CG + MPIL RADIX: 500 iter, norm 1.392545e-03
+CG with MPIL RADIX Allreduce: 1.169290e-01
+CG with MPIL RADIX Allreduce: 1.222370e-01
+CG with MPIL RADIX Allreduce: 1.369732e-01
+CG with MPIL RADIX Allreduce: 1.305338e-01
+CG with MPIL RADIX Allreduce: 1.272309e-01
+CG + MPIL RD Pers: 500 iter, norm 2.029771e-03
+CG with MPIL RD Pers Allreduce: 1.149631e-01
+CG with MPIL RD Pers Allreduce: 1.139318e-01
+CG with MPIL RD Pers Allreduce: 1.231432e-01
+CG with MPIL RD Pers Allreduce: 1.138539e-01
+CG with MPIL RD Pers Allreduce: 1.120697e-01
+CG + MPIL NA Pers: 500 iter, norm 2.029771e-03
+CG with MPIL NA Pers Allreduce: 1.155191e-01
+CG with MPIL NA Pers Allreduce: 1.138495e-01
+CG with MPIL NA Pers Allreduce: 1.144038e-01
+CG with MPIL NA Pers Allreduce: 1.122768e-01
+CG with MPIL NA Pers Allreduce: 1.197822e-01
+CG + MPIL LA Pers: 500 iter, norm 2.029771e-03
+CG with MPIL LA Pers Allreduce: 1.131582e-01
+CG with MPIL LA Pers Allreduce: 1.146251e-01
+CG with MPIL LA Pers Allreduce: 1.262638e-01
+CG with MPIL LA Pers Allreduce: 1.190234e-01
+CG with MPIL LA Pers Allreduce: 1.140377e-01
+CG + MPIL RADIX Pers: 500 iter, norm 2.029771e-03
+CG with MPIL RADIX Pers Allreduce: 1.151418e-01
+CG with MPIL RADIX Pers Allreduce: 1.234838e-01
+CG with MPIL RADIX Pers Allreduce: 1.141349e-01
+CG with MPIL RADIX Pers Allreduce: 1.139614e-01
+CG with MPIL RADIX Pers Allreduce: 1.156584e-01
+CG + MPIL RMA Hier Pers: 500 iter, norm 2.029771e-03
+CG with MPIL RMA Hier Pers Allreduce: 1.116740e-01
+CG with MPIL RMA Hier Pers Allreduce: 1.146339e-01
+CG with MPIL RMA Hier Pers Allreduce: 1.168381e-01
+CG with MPIL RMA Hier Pers Allreduce: 1.185828e-01
+CG with MPIL RMA Hier Pers Allreduce: 1.126833e-01
+CG + MPIL RMA Hier EB Pers: 500 iter, norm 2.029771e-03
+CG with MPIL RMA Hier EB Pers Allreduce: 1.163115e-01
+CG with MPIL RMA Hier EB Pers Allreduce: 1.214463e-01
+CG with MPIL RMA Hier EB Pers Allreduce: 1.176742e-01
+CG with MPIL RMA Hier EB Pers Allreduce: 1.201943e-01
+CG with MPIL RMA Hier EB Pers Allreduce: 1.130329e-01
+Running with Locality Neighbor Collectives
+CG + PMPI: 500 iter, norm 1.349125e-03
+CG with PMPI Allreduce: 3.238812e-01
+CG with PMPI Allreduce: 3.223194e-01
+CG with PMPI Allreduce: 3.328806e-01
+CG with PMPI Allreduce: 3.212444e-01
+CG with PMPI Allreduce: 3.345427e-01
+CG + MPIL RD: 500 iter, norm 2.029771e-03
+CG with MPIL RD Allreduce: 3.228087e-01
+CG with MPIL RD Allreduce: 3.193743e-01
+CG with MPIL RD Allreduce: 3.229238e-01
+CG with MPIL RD Allreduce: 3.351219e-01
+CG with MPIL RD Allreduce: 3.575760e-01
+CG + MPIL NA: 500 iter, norm 1.891433e-03
+CG with MPIL NA Allreduce: 2.963362e-01
+CG with MPIL NA Allreduce: 2.893795e-01
+CG with MPIL NA Allreduce: 2.882143e-01
+CG with MPIL NA Allreduce: 2.774048e-01
+CG with MPIL NA Allreduce: 2.976844e-01
+CG + MPIL LA: 500 iter, norm 1.025754e-03
+CG with MPIL LA Allreduce: 2.938806e-01
+CG with MPIL LA Allreduce: 3.098426e-01
+CG with MPIL LA Allreduce: 2.976247e-01
+CG with MPIL LA Allreduce: 2.996145e-01
+CG with MPIL LA Allreduce: 3.019034e-01
+CG + MPIL RADIX: 500 iter, norm 1.392545e-03
+CG with MPIL RADIX Allreduce: 3.155952e-01
+CG with MPIL RADIX Allreduce: 3.591819e-01
+CG with MPIL RADIX Allreduce: 3.380516e-01
+CG with MPIL RADIX Allreduce: 3.124333e-01
+CG with MPIL RADIX Allreduce: 3.590760e-01
+CG + MPIL RD Pers: 500 iter, norm 2.029771e-03
+CG with MPIL RD Pers Allreduce: 3.134336e-01
+CG with MPIL RD Pers Allreduce: 3.069830e-01
+CG with MPIL RD Pers Allreduce: 3.062620e-01
+CG with MPIL RD Pers Allreduce: 2.956033e-01
+CG with MPIL RD Pers Allreduce: 3.109490e-01
+CG + MPIL NA Pers: 500 iter, norm 2.029771e-03
+CG with MPIL NA Pers Allreduce: 3.001061e-01
+CG with MPIL NA Pers Allreduce: 3.101363e-01
+CG with MPIL NA Pers Allreduce: 3.160537e-01
+CG with MPIL NA Pers Allreduce: 3.062293e-01
+CG with MPIL NA Pers Allreduce: 3.120695e-01
+CG + MPIL LA Pers: 500 iter, norm 2.029771e-03
+CG with MPIL LA Pers Allreduce: 3.068124e-01
+CG with MPIL LA Pers Allreduce: 3.197360e-01
+CG with MPIL LA Pers Allreduce: 3.160915e-01
+CG with MPIL LA Pers Allreduce: 3.041773e-01
+CG with MPIL LA Pers Allreduce: 2.995796e-01
+CG + MPIL RADIX Pers: 500 iter, norm 2.029771e-03
+CG with MPIL RADIX Pers Allreduce: 3.216844e-01
+CG with MPIL RADIX Pers Allreduce: 3.230103e-01
+CG with MPIL RADIX Pers Allreduce: 3.140885e-01
+CG with MPIL RADIX Pers Allreduce: 3.153266e-01
+CG with MPIL RADIX Pers Allreduce: 3.023453e-01
+CG + MPIL RMA Hier Pers: 500 iter, norm 2.029771e-03
+CG with MPIL RMA Hier Pers Allreduce: 3.121852e-01
+CG with MPIL RMA Hier Pers Allreduce: 3.089056e-01
+CG with MPIL RMA Hier Pers Allreduce: 2.996574e-01
+CG with MPIL RMA Hier Pers Allreduce: 3.090932e-01
+CG with MPIL RMA Hier Pers Allreduce: 3.138128e-01
+CG + MPIL RMA Hier EB Pers: 500 iter, norm 2.029771e-03
+CG with MPIL RMA Hier EB Pers Allreduce: 3.104449e-01
+CG with MPIL RMA Hier EB Pers Allreduce: 3.087216e-01
+CG with MPIL RMA Hier EB Pers Allreduce: 3.081100e-01
+CG with MPIL RMA Hier EB Pers Allreduce: 3.053112e-01
+CG with MPIL RMA Hier EB Pers Allreduce: 3.119712e-01
+Running with Pers Standard Neighbor Collectives
+CG + PMPI: 500 iter, norm 1.349125e-03
+CG with PMPI Allreduce: 1.158003e-01
+CG with PMPI Allreduce: 1.201777e-01
+CG with PMPI Allreduce: 1.184376e-01
+CG with PMPI Allreduce: 1.135625e-01
+CG with PMPI Allreduce: 1.118419e-01
+CG + MPIL RD: 500 iter, norm 2.029771e-03
+CG with MPIL RD Allreduce: 1.195560e-01
+CG with MPIL RD Allreduce: 1.164827e-01
+CG with MPIL RD Allreduce: 1.135328e-01
+CG with MPIL RD Allreduce: 1.239442e-01
+CG with MPIL RD Allreduce: 1.166216e-01
+CG + MPIL NA: 500 iter, norm 1.891433e-03
+CG with MPIL NA Allreduce: 1.065278e-01
+CG with MPIL NA Allreduce: 1.026581e-01
+CG with MPIL NA Allreduce: 1.021531e-01
+CG with MPIL NA Allreduce: 1.017034e-01
+CG with MPIL NA Allreduce: 1.042293e-01
+CG + MPIL LA: 500 iter, norm 1.025754e-03
+CG with MPIL LA Allreduce: 1.234677e-01
+CG with MPIL LA Allreduce: 1.106135e-01
+CG with MPIL LA Allreduce: 1.050837e-01
+CG with MPIL LA Allreduce: 1.063198e-01
+CG with MPIL LA Allreduce: 1.092478e-01
+CG + MPIL RADIX: 500 iter, norm 1.392545e-03
+CG with MPIL RADIX Allreduce: 1.344303e-01
+CG with MPIL RADIX Allreduce: 1.189953e-01
+CG with MPIL RADIX Allreduce: 1.236135e-01
+CG with MPIL RADIX Allreduce: 1.184515e-01
+CG with MPIL RADIX Allreduce: 1.209082e-01
+CG + MPIL RD Pers: 500 iter, norm 2.029771e-03
+CG with MPIL RD Pers Allreduce: 1.129864e-01
+CG with MPIL RD Pers Allreduce: 1.190380e-01
+CG with MPIL RD Pers Allreduce: 1.167467e-01
+CG with MPIL RD Pers Allreduce: 1.233924e-01
+CG with MPIL RD Pers Allreduce: 1.129127e-01
+CG + MPIL NA Pers: 500 iter, norm 2.029771e-03
+CG with MPIL NA Pers Allreduce: 1.095852e-01
+CG with MPIL NA Pers Allreduce: 1.194098e-01
+CG with MPIL NA Pers Allreduce: 1.137499e-01
+CG with MPIL NA Pers Allreduce: 1.134014e-01
+CG with MPIL NA Pers Allreduce: 1.096369e-01
+CG + MPIL LA Pers: 500 iter, norm 2.029771e-03
+CG with MPIL LA Pers Allreduce: 1.131105e-01
+CG with MPIL LA Pers Allreduce: 1.145756e-01
+CG with MPIL LA Pers Allreduce: 1.122612e-01
+CG with MPIL LA Pers Allreduce: 1.187214e-01
+CG with MPIL LA Pers Allreduce: 1.069020e-01
+CG + MPIL RADIX Pers: 500 iter, norm 2.029771e-03
+CG with MPIL RADIX Pers Allreduce: 1.079950e-01
+CG with MPIL RADIX Pers Allreduce: 1.158696e-01
+CG with MPIL RADIX Pers Allreduce: 1.329198e-01
+CG with MPIL RADIX Pers Allreduce: 1.234142e-01
+CG with MPIL RADIX Pers Allreduce: 1.116440e-01
+CG + MPIL RMA Hier Pers: 500 iter, norm 2.029771e-03
+CG with MPIL RMA Hier Pers Allreduce: 1.154543e-01
+CG with MPIL RMA Hier Pers Allreduce: 1.166029e-01
+CG with MPIL RMA Hier Pers Allreduce: 1.100743e-01
+CG with MPIL RMA Hier Pers Allreduce: 1.146578e-01
+CG with MPIL RMA Hier Pers Allreduce: 1.219290e-01
+CG + MPIL RMA Hier EB Pers: 500 iter, norm 2.029771e-03
+CG with MPIL RMA Hier EB Pers Allreduce: 1.124659e-01
+CG with MPIL RMA Hier EB Pers Allreduce: 1.114648e-01
+CG with MPIL RMA Hier EB Pers Allreduce: 1.079648e-01
+CG with MPIL RMA Hier EB Pers Allreduce: 1.142870e-01
+CG with MPIL RMA Hier EB Pers Allreduce: 1.077721e-01
+Running with Pers Locality Neighbor Collectives
+CG + PMPI: 500 iter, norm 1.349125e-03
+CG with PMPI Allreduce: 3.719255e-01
+CG with PMPI Allreduce: 3.824557e-01
+CG with PMPI Allreduce: 3.579417e-01
+CG with PMPI Allreduce: 4.145504e-01
+CG with PMPI Allreduce: 3.696793e-01
+CG + MPIL RD: 500 iter, norm 2.029771e-03
+CG with MPIL RD Allreduce: 3.660727e-01
+CG with MPIL RD Allreduce: 3.880285e-01
+CG with MPIL RD Allreduce: 3.662772e-01
+CG with MPIL RD Allreduce: 3.657557e-01
+CG with MPIL RD Allreduce: 3.908892e-01
+CG + MPIL NA: 500 iter, norm 1.891433e-03
+CG with MPIL NA Allreduce: 3.670351e-01
+CG with MPIL NA Allreduce: 3.589886e-01
+CG with MPIL NA Allreduce: 3.495549e-01
+CG with MPIL NA Allreduce: 3.529334e-01
+CG with MPIL NA Allreduce: 3.625419e-01
+CG + MPIL LA: 500 iter, norm 1.025754e-03
+CG with MPIL LA Allreduce: 3.562446e-01
+CG with MPIL LA Allreduce: 3.695674e-01
+CG with MPIL LA Allreduce: 3.755465e-01
+CG with MPIL LA Allreduce: 3.665791e-01
+CG with MPIL LA Allreduce: 3.594156e-01
+CG + MPIL RADIX: 500 iter, norm 1.392545e-03
+CG with MPIL RADIX Allreduce: 4.358450e-01
+CG with MPIL RADIX Allreduce: 3.702882e-01
+CG with MPIL RADIX Allreduce: 3.862741e-01
+CG with MPIL RADIX Allreduce: 3.986459e-01
+CG with MPIL RADIX Allreduce: 3.790797e-01
+CG + MPIL RD Pers: 500 iter, norm 2.029771e-03
+CG with MPIL RD Pers Allreduce: 3.692848e-01
+CG with MPIL RD Pers Allreduce: 3.693106e-01
+CG with MPIL RD Pers Allreduce: 3.668884e-01
+CG with MPIL RD Pers Allreduce: 3.506125e-01
+CG with MPIL RD Pers Allreduce: 3.672506e-01
+CG + MPIL NA Pers: 500 iter, norm 2.029771e-03
+CG with MPIL NA Pers Allreduce: 3.912478e-01
+CG with MPIL NA Pers Allreduce: 3.726690e-01
+CG with MPIL NA Pers Allreduce: 3.741761e-01
+CG with MPIL NA Pers Allreduce: 3.967855e-01
+CG with MPIL NA Pers Allreduce: 3.699356e-01
+CG + MPIL LA Pers: 500 iter, norm 2.029771e-03
+CG with MPIL LA Pers Allreduce: 3.652715e-01
+CG with MPIL LA Pers Allreduce: 3.844458e-01
+CG with MPIL LA Pers Allreduce: 3.683163e-01
+CG with MPIL LA Pers Allreduce: 4.149181e-01
+CG with MPIL LA Pers Allreduce: 3.832905e-01
+CG + MPIL RADIX Pers: 500 iter, norm 2.029771e-03
+CG with MPIL RADIX Pers Allreduce: 3.636478e-01
+CG with MPIL RADIX Pers Allreduce: 3.651659e-01
+CG with MPIL RADIX Pers Allreduce: 3.809568e-01
+CG with MPIL RADIX Pers Allreduce: 3.729987e-01
+CG with MPIL RADIX Pers Allreduce: 3.665379e-01
+CG + MPIL RMA Hier Pers: 500 iter, norm 2.029771e-03
+CG with MPIL RMA Hier Pers Allreduce: 3.565746e-01
+CG with MPIL RMA Hier Pers Allreduce: 3.928409e-01
+CG with MPIL RMA Hier Pers Allreduce: 3.909814e-01
+CG with MPIL RMA Hier Pers Allreduce: 3.782694e-01
+CG with MPIL RMA Hier Pers Allreduce: 3.782169e-01
+CG + MPIL RMA Hier EB Pers: 500 iter, norm 2.029771e-03
+CG with MPIL RMA Hier EB Pers Allreduce: 3.673703e-01
+CG with MPIL RMA Hier EB Pers Allreduce: 3.720693e-01
+CG with MPIL RMA Hier EB Pers Allreduce: 3.819649e-01
+CG with MPIL RMA Hier EB Pers Allreduce: 3.552312e-01
+CG with MPIL RMA Hier EB Pers Allreduce: 3.577357e-01

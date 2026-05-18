@@ -1,0 +1,21 @@
+#!/bin/bash
+  
+#SBATCH --output=cg_earlybird.%j.out
+#SBATCH --error=cg_earlybird.%j.err
+#SBATCH --nodes=64
+#SBATCH --tasks-per-node=112
+#SBATCH --cpus-per-task=1
+#SBATCH --time=01:30:00
+#SBATCH --partition=pbatch
+#SBATCH --exclusive
+
+cd ${HOME}/CG/src
+folder=/usr/workspace/bienz1/benchmark_mats/SPD
+for mat in nd24k.pm nd12k.pm crankseg_1.pm crankseg_2.pm m_t1.pm; do
+    echo $mat
+    for (( nodes = 1; nodes <= ${SLURM_NNODES}; nodes*=2 ));
+    do
+        echo "srun --ntasks-per-node 112 -N $nodes ./cg $folder/$mat"
+        srun --ntasks-per-node 112 -N $nodes ./cg $folder/$mat
+    done
+done

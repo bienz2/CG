@@ -1,0 +1,756 @@
+nd24k.pm
+srun --ntasks-per-node 112 -N 1 ./cg /usr/workspace/bienz1/benchmark_mats/SPD/nd24k.pm
+Read matrix: 1.533869e+00
+Form comm: 1.325298e-03
+Running with Standard Neighbor Collectives
+CG + PMPI: 500 iter, norm 6.478457e-06
+CG with PMPI Allreduce: 3.440482e-01
+CG with PMPI Allreduce: 3.444506e-01
+CG with PMPI Allreduce: 3.496617e-01
+CG with PMPI Allreduce: 3.537738e-01
+CG with PMPI Allreduce: 3.533460e-01
+CG + MPIL RMA Hier Pers: 500 iter, norm 5.089944e-06
+CG with MPIL RMA Hier Pers Allreduce: 3.547449e-01
+CG with MPIL RMA Hier Pers Allreduce: 3.556527e-01
+CG with MPIL RMA Hier Pers Allreduce: 3.552883e-01
+CG with MPIL RMA Hier Pers Allreduce: 3.552784e-01
+CG with MPIL RMA Hier Pers Allreduce: 3.561210e-01
+CG + MPIL RMA Hier EB Pers: 500 iter, norm 5.089944e-06
+CG with MPIL RMA Hier EB Pers Allreduce: 3.554534e-01
+CG with MPIL RMA Hier EB Pers Allreduce: 3.559787e-01
+CG with MPIL RMA Hier EB Pers Allreduce: 3.560462e-01
+CG with MPIL RMA Hier EB Pers Allreduce: 3.564880e-01
+CG with MPIL RMA Hier EB Pers Allreduce: 3.566022e-01
+srun --ntasks-per-node 112 -N 2 ./cg /usr/workspace/bienz1/benchmark_mats/SPD/nd24k.pm
+Read matrix: 9.648914e-01
+Form comm: 2.095027e-01
+Running with Standard Neighbor Collectives
+CG + PMPI: 500 iter, norm 5.807033e-06
+CG with PMPI Allreduce: 1.663659e-01
+CG with PMPI Allreduce: 1.655922e-01
+CG with PMPI Allreduce: 1.676816e-01
+CG with PMPI Allreduce: 1.667351e-01
+CG with PMPI Allreduce: 1.677908e-01
+CG + MPIL RMA Hier Pers: 500 iter, norm 5.157494e-06
+CG with MPIL RMA Hier Pers Allreduce: 1.673683e-01
+CG with MPIL RMA Hier Pers Allreduce: 1.673489e-01
+CG with MPIL RMA Hier Pers Allreduce: 1.681446e-01
+CG with MPIL RMA Hier Pers Allreduce: 1.674700e-01
+CG with MPIL RMA Hier Pers Allreduce: 1.683521e-01
+CG + MPIL RMA Hier EB Pers: 500 iter, norm 5.157494e-06
+CG with MPIL RMA Hier EB Pers Allreduce: 1.676399e-01
+CG with MPIL RMA Hier EB Pers Allreduce: 1.677984e-01
+CG with MPIL RMA Hier EB Pers Allreduce: 1.684472e-01
+CG with MPIL RMA Hier EB Pers Allreduce: 1.675720e-01
+CG with MPIL RMA Hier EB Pers Allreduce: 1.683750e-01
+srun --ntasks-per-node 112 -N 4 ./cg /usr/workspace/bienz1/benchmark_mats/SPD/nd24k.pm
+Read matrix: 7.784451e-01
+Form comm: 4.239615e-01
+Running with Standard Neighbor Collectives
+CG + PMPI: 500 iter, norm 5.194859e-06
+CG with PMPI Allreduce: 1.460354e+00
+CG with PMPI Allreduce: 1.132691e+00
+CG with PMPI Allreduce: 1.449245e+00
+CG with PMPI Allreduce: 9.705301e-01
+CG with PMPI Allreduce: 8.168986e-01
+CG + MPIL RMA Hier Pers: 500 iter, norm 5.236277e-06
+CG with MPIL RMA Hier Pers Allreduce: 1.773329e+00
+CG with MPIL RMA Hier Pers Allreduce: 6.483220e-01
+CG with MPIL RMA Hier Pers Allreduce: 1.772189e+00
+CG with MPIL RMA Hier Pers Allreduce: 4.876281e-01
+CG with MPIL RMA Hier Pers Allreduce: 1.451929e+00
+CG + MPIL RMA Hier EB Pers: 500 iter, norm 5.236277e-06
+CG with MPIL RMA Hier EB Pers Allreduce: 8.938828e-01
+CG with MPIL RMA Hier EB Pers Allreduce: 1.532976e+00
+CG with MPIL RMA Hier EB Pers Allreduce: 2.092057e+00
+CG with MPIL RMA Hier EB Pers Allreduce: 7.289261e-01
+CG with MPIL RMA Hier EB Pers Allreduce: 1.216265e+00
+srun --ntasks-per-node 112 -N 8 ./cg /usr/workspace/bienz1/benchmark_mats/SPD/nd24k.pm
+Read matrix: 3.777930e-01
+Form comm: 4.392550e-01
+Running with Standard Neighbor Collectives
+CG + PMPI: 500 iter, norm 5.515198e-06
+CG with PMPI Allreduce: 5.946141e-01
+CG with PMPI Allreduce: 5.423584e-01
+CG with PMPI Allreduce: 5.967060e-01
+CG with PMPI Allreduce: 4.052370e-01
+CG with PMPI Allreduce: 4.708769e-01
+CG + MPIL RMA Hier Pers: 500 iter, norm 6.035311e-06
+CG with MPIL RMA Hier Pers Allreduce: 6.219964e-01
+CG with MPIL RMA Hier Pers Allreduce: 1.368682e-01
+CG with MPIL RMA Hier Pers Allreduce: 2.960149e-01
+CG with MPIL RMA Hier Pers Allreduce: 4.590095e-01
+CG with MPIL RMA Hier Pers Allreduce: 4.576439e-01
+CG + MPIL RMA Hier EB Pers: 500 iter, norm 6.035311e-06
+CG with MPIL RMA Hier EB Pers Allreduce: 4.582411e-01
+CG with MPIL RMA Hier EB Pers Allreduce: 3.692508e-01
+CG with MPIL RMA Hier EB Pers Allreduce: 3.026887e-01
+CG with MPIL RMA Hier EB Pers Allreduce: 3.045336e-01
+CG with MPIL RMA Hier EB Pers Allreduce: 3.430886e-01
+srun --ntasks-per-node 112 -N 16 ./cg /usr/workspace/bienz1/benchmark_mats/SPD/nd24k.pm
+Read matrix: 3.622254e-01
+Form comm: 4.758448e-01
+Running with Standard Neighbor Collectives
+CG + PMPI: 500 iter, norm 5.452306e-06
+CG with PMPI Allreduce: 9.547309e-01
+CG with PMPI Allreduce: 6.895967e-01
+CG with PMPI Allreduce: 6.068287e-01
+CG with PMPI Allreduce: 6.180176e-01
+CG with PMPI Allreduce: 6.074419e-01
+CG + MPIL RMA Hier Pers: 500 iter, norm 5.237911e-06
+CG with MPIL RMA Hier Pers Allreduce: 5.017239e-01
+CG with MPIL RMA Hier Pers Allreduce: 8.313450e-01
+CG with MPIL RMA Hier Pers Allreduce: 4.635604e-01
+CG with MPIL RMA Hier Pers Allreduce: 5.068567e-01
+CG with MPIL RMA Hier Pers Allreduce: 3.948270e-01
+CG + MPIL RMA Hier EB Pers: 500 iter, norm 5.237911e-06
+CG with MPIL RMA Hier EB Pers Allreduce: 3.791180e-01
+CG with MPIL RMA Hier EB Pers Allreduce: 6.991327e-01
+CG with MPIL RMA Hier EB Pers Allreduce: 4.487857e-01
+CG with MPIL RMA Hier EB Pers Allreduce: 4.536710e-01
+CG with MPIL RMA Hier EB Pers Allreduce: 3.669252e-01
+srun --ntasks-per-node 112 -N 32 ./cg /usr/workspace/bienz1/benchmark_mats/SPD/nd24k.pm
+Read matrix: 4.045314e-01
+Form comm: 5.511263e-01
+Running with Standard Neighbor Collectives
+CG + PMPI: 500 iter, norm 7.634654e-06
+CG with PMPI Allreduce: 1.418916e-01
+CG with PMPI Allreduce: 1.623839e-01
+CG with PMPI Allreduce: 2.072652e-01
+CG with PMPI Allreduce: 1.883248e-01
+CG with PMPI Allreduce: 1.905763e-01
+CG + MPIL RMA Hier Pers: 500 iter, norm 5.126521e-06
+CG with MPIL RMA Hier Pers Allreduce: 2.144383e-01
+CG with MPIL RMA Hier Pers Allreduce: 2.278278e-01
+CG with MPIL RMA Hier Pers Allreduce: 1.863102e-01
+CG with MPIL RMA Hier Pers Allreduce: 2.390676e-01
+CG with MPIL RMA Hier Pers Allreduce: 1.598000e-01
+CG + MPIL RMA Hier EB Pers: 500 iter, norm 5.126521e-06
+CG with MPIL RMA Hier EB Pers Allreduce: 1.569488e-01
+CG with MPIL RMA Hier EB Pers Allreduce: 1.583941e-01
+CG with MPIL RMA Hier EB Pers Allreduce: 1.608723e-01
+CG with MPIL RMA Hier EB Pers Allreduce: 1.400059e-01
+CG with MPIL RMA Hier EB Pers Allreduce: 2.127148e-01
+srun --ntasks-per-node 112 -N 64 ./cg /usr/workspace/bienz1/benchmark_mats/SPD/nd24k.pm
+Read matrix: 3.966783e-01
+Form comm: 8.473019e-01
+Running with Standard Neighbor Collectives
+CG + PMPI: 500 iter, norm 5.715979e-06
+CG with PMPI Allreduce: 3.229864e+00
+CG with PMPI Allreduce: 2.120405e+00
+CG with PMPI Allreduce: 3.730873e+00
+CG with PMPI Allreduce: 2.576998e+00
+CG with PMPI Allreduce: 1.460772e+00
+CG + MPIL RMA Hier Pers: 500 iter, norm 5.628265e-06
+CG with MPIL RMA Hier Pers Allreduce: 3.280665e+00
+CG with MPIL RMA Hier Pers Allreduce: 1.489800e+00
+CG with MPIL RMA Hier Pers Allreduce: 3.246724e+00
+CG with MPIL RMA Hier Pers Allreduce: 2.297507e+00
+CG with MPIL RMA Hier Pers Allreduce: 6.550063e-01
+CG + MPIL RMA Hier EB Pers: 500 iter, norm 5.628265e-06
+CG with MPIL RMA Hier EB Pers Allreduce: 2.290058e+00
+CG with MPIL RMA Hier EB Pers Allreduce: 2.607172e+00
+CG with MPIL RMA Hier EB Pers Allreduce: 1.935279e+00
+CG with MPIL RMA Hier EB Pers Allreduce: 1.322883e+00
+CG with MPIL RMA Hier EB Pers Allreduce: 2.279346e+00
+nd12k.pm
+srun --ntasks-per-node 112 -N 1 ./cg /usr/workspace/bienz1/benchmark_mats/SPD/nd12k.pm
+Read matrix: 7.252953e-01
+Form comm: 8.518420e-04
+Running with Standard Neighbor Collectives
+CG + PMPI: 500 iter, norm 5.289120e-06
+CG with PMPI Allreduce: 1.358260e-01
+CG with PMPI Allreduce: 1.361747e-01
+CG with PMPI Allreduce: 1.357175e-01
+CG with PMPI Allreduce: 1.370970e-01
+CG with PMPI Allreduce: 1.371033e-01
+CG + MPIL RMA Hier Pers: 500 iter, norm 5.301432e-06
+CG with MPIL RMA Hier Pers Allreduce: 1.388183e-01
+CG with MPIL RMA Hier Pers Allreduce: 1.385351e-01
+CG with MPIL RMA Hier Pers Allreduce: 1.385732e-01
+CG with MPIL RMA Hier Pers Allreduce: 1.388563e-01
+CG with MPIL RMA Hier Pers Allreduce: 1.386861e-01
+CG + MPIL RMA Hier EB Pers: 500 iter, norm 5.301432e-06
+CG with MPIL RMA Hier EB Pers Allreduce: 1.388450e-01
+CG with MPIL RMA Hier EB Pers Allreduce: 1.386872e-01
+CG with MPIL RMA Hier EB Pers Allreduce: 1.388134e-01
+CG with MPIL RMA Hier EB Pers Allreduce: 1.386956e-01
+CG with MPIL RMA Hier EB Pers Allreduce: 1.387844e-01
+srun --ntasks-per-node 112 -N 2 ./cg /usr/workspace/bienz1/benchmark_mats/SPD/nd12k.pm
+Read matrix: 5.504651e-01
+Form comm: 2.010547e-01
+Running with Standard Neighbor Collectives
+CG + PMPI: 500 iter, norm 5.715693e-06
+CG with PMPI Allreduce: 1.121278e-01
+CG with PMPI Allreduce: 1.106795e-01
+CG with PMPI Allreduce: 1.102995e-01
+CG with PMPI Allreduce: 1.100360e-01
+CG with PMPI Allreduce: 1.122462e-01
+CG + MPIL RMA Hier Pers: 500 iter, norm 5.828140e-06
+CG with MPIL RMA Hier Pers Allreduce: 1.103794e-01
+CG with MPIL RMA Hier Pers Allreduce: 1.101490e-01
+CG with MPIL RMA Hier Pers Allreduce: 1.103916e-01
+CG with MPIL RMA Hier Pers Allreduce: 1.102248e-01
+CG with MPIL RMA Hier Pers Allreduce: 1.101290e-01
+CG + MPIL RMA Hier EB Pers: 500 iter, norm 5.828140e-06
+CG with MPIL RMA Hier EB Pers Allreduce: 1.106846e-01
+CG with MPIL RMA Hier EB Pers Allreduce: 1.099753e-01
+CG with MPIL RMA Hier EB Pers Allreduce: 1.105741e-01
+CG with MPIL RMA Hier EB Pers Allreduce: 1.101489e-01
+CG with MPIL RMA Hier EB Pers Allreduce: 1.105576e-01
+srun --ntasks-per-node 112 -N 4 ./cg /usr/workspace/bienz1/benchmark_mats/SPD/nd12k.pm
+Read matrix: 7.727463e-01
+Form comm: 3.308729e-01
+Running with Standard Neighbor Collectives
+CG + PMPI: 500 iter, norm 5.242310e-06
+CG with PMPI Allreduce: 1.327111e-01
+CG with PMPI Allreduce: 1.242553e-01
+CG with PMPI Allreduce: 1.263463e-01
+CG with PMPI Allreduce: 1.151976e-01
+CG with PMPI Allreduce: 1.147637e-01
+CG + MPIL RMA Hier Pers: 500 iter, norm 5.332890e-06
+CG with MPIL RMA Hier Pers Allreduce: 1.175294e-01
+CG with MPIL RMA Hier Pers Allreduce: 1.167473e-01
+CG with MPIL RMA Hier Pers Allreduce: 1.240628e-01
+CG with MPIL RMA Hier Pers Allreduce: 1.194461e-01
+CG with MPIL RMA Hier Pers Allreduce: 1.127870e-01
+CG + MPIL RMA Hier EB Pers: 500 iter, norm 5.332890e-06
+CG with MPIL RMA Hier EB Pers Allreduce: 1.145533e-01
+CG with MPIL RMA Hier EB Pers Allreduce: 1.236475e-01
+CG with MPIL RMA Hier EB Pers Allreduce: 1.220448e-01
+CG with MPIL RMA Hier EB Pers Allreduce: 1.191280e-01
+CG with MPIL RMA Hier EB Pers Allreduce: 1.198209e-01
+srun --ntasks-per-node 112 -N 8 ./cg /usr/workspace/bienz1/benchmark_mats/SPD/nd12k.pm
+Read matrix: 2.017462e-01
+Form comm: 4.022041e-01
+Running with Standard Neighbor Collectives
+CG + PMPI: 500 iter, norm 5.595204e-06
+CG with PMPI Allreduce: 1.996980e-01
+CG with PMPI Allreduce: 2.439841e-01
+CG with PMPI Allreduce: 2.477639e-01
+CG with PMPI Allreduce: 1.993366e-01
+CG with PMPI Allreduce: 1.518111e-01
+CG + MPIL RMA Hier Pers: 500 iter, norm 5.543514e-06
+CG with MPIL RMA Hier Pers Allreduce: 2.460453e-01
+CG with MPIL RMA Hier Pers Allreduce: 1.652334e-01
+CG with MPIL RMA Hier Pers Allreduce: 1.455255e-01
+CG with MPIL RMA Hier Pers Allreduce: 1.687819e-01
+CG with MPIL RMA Hier Pers Allreduce: 2.895918e-01
+CG + MPIL RMA Hier EB Pers: 500 iter, norm 5.543514e-06
+CG with MPIL RMA Hier EB Pers Allreduce: 1.619459e-01
+CG with MPIL RMA Hier EB Pers Allreduce: 2.007260e-01
+CG with MPIL RMA Hier EB Pers Allreduce: 1.415247e-01
+CG with MPIL RMA Hier EB Pers Allreduce: 1.942869e-01
+CG with MPIL RMA Hier EB Pers Allreduce: 2.157733e-01
+srun --ntasks-per-node 112 -N 16 ./cg /usr/workspace/bienz1/benchmark_mats/SPD/nd12k.pm
+Read matrix: 2.556996e-01
+Form comm: 4.821066e-01
+Running with Standard Neighbor Collectives
+CG + PMPI: 500 iter, norm 5.537245e-06
+CG with PMPI Allreduce: 1.548742e-01
+CG with PMPI Allreduce: 1.139632e-01
+CG with PMPI Allreduce: 1.153787e-01
+CG with PMPI Allreduce: 1.142755e-01
+CG with PMPI Allreduce: 1.713578e-01
+CG + MPIL RMA Hier Pers: 500 iter, norm 5.498762e-06
+CG with MPIL RMA Hier Pers Allreduce: 1.526352e-01
+CG with MPIL RMA Hier Pers Allreduce: 1.362066e-01
+CG with MPIL RMA Hier Pers Allreduce: 1.640796e-01
+CG with MPIL RMA Hier Pers Allreduce: 1.133166e-01
+CG with MPIL RMA Hier Pers Allreduce: 1.973966e-01
+CG + MPIL RMA Hier EB Pers: 500 iter, norm 5.498762e-06
+CG with MPIL RMA Hier EB Pers Allreduce: 2.004882e-01
+CG with MPIL RMA Hier EB Pers Allreduce: 1.135702e-01
+CG with MPIL RMA Hier EB Pers Allreduce: 1.127485e-01
+CG with MPIL RMA Hier EB Pers Allreduce: 1.285471e-01
+CG with MPIL RMA Hier EB Pers Allreduce: 1.147490e-01
+srun --ntasks-per-node 112 -N 32 ./cg /usr/workspace/bienz1/benchmark_mats/SPD/nd12k.pm
+Read matrix: 3.639518e-01
+Form comm: 7.491240e-01
+Running with Standard Neighbor Collectives
+CG + PMPI: 500 iter, norm 5.148138e-06
+CG with PMPI Allreduce: 1.435905e+00
+CG with PMPI Allreduce: 2.250204e+00
+CG with PMPI Allreduce: 1.607209e+00
+CG with PMPI Allreduce: 2.085190e+00
+CG with PMPI Allreduce: 2.750589e+00
+CG + MPIL RMA Hier Pers: 500 iter, norm 5.162328e-06
+CG with MPIL RMA Hier Pers Allreduce: 3.405107e+00
+CG with MPIL RMA Hier Pers Allreduce: 3.177798e+00
+CG with MPIL RMA Hier Pers Allreduce: 2.093318e+00
+CG with MPIL RMA Hier Pers Allreduce: 1.920373e+00
+CG with MPIL RMA Hier Pers Allreduce: 1.914607e+00
+CG + MPIL RMA Hier EB Pers: 500 iter, norm 5.162328e-06
+CG with MPIL RMA Hier EB Pers Allreduce: 1.322704e+00
+CG with MPIL RMA Hier EB Pers Allreduce: 2.954636e+00
+CG with MPIL RMA Hier EB Pers Allreduce: 2.563911e+00
+CG with MPIL RMA Hier EB Pers Allreduce: 2.938139e+00
+CG with MPIL RMA Hier EB Pers Allreduce: 1.125315e+00
+srun --ntasks-per-node 112 -N 64 ./cg /usr/workspace/bienz1/benchmark_mats/SPD/nd12k.pm
+Read matrix: 2.971546e-01
+Form comm: 1.441775e+00
+Running with Standard Neighbor Collectives
+CG + PMPI: 500 iter, norm 5.435870e-06
+CG with PMPI Allreduce: 7.654654e+00
+CG with PMPI Allreduce: 7.289774e+00
+CG with PMPI Allreduce: 6.826204e+00
+CG with PMPI Allreduce: 8.283154e+00
+CG with PMPI Allreduce: 5.205594e+00
+CG + MPIL RMA Hier Pers: 500 iter, norm 5.250721e-06
+CG with MPIL RMA Hier Pers Allreduce: 1.023133e+01
+CG with MPIL RMA Hier Pers Allreduce: 5.840133e+00
+CG with MPIL RMA Hier Pers Allreduce: 4.595359e+00
+CG with MPIL RMA Hier Pers Allreduce: 6.881700e+00
+CG with MPIL RMA Hier Pers Allreduce: 8.453211e+00
+CG + MPIL RMA Hier EB Pers: 500 iter, norm 5.250721e-06
+CG with MPIL RMA Hier EB Pers Allreduce: 6.032389e+00
+CG with MPIL RMA Hier EB Pers Allreduce: 8.456113e+00
+CG with MPIL RMA Hier EB Pers Allreduce: 5.899912e+00
+CG with MPIL RMA Hier EB Pers Allreduce: 8.607187e+00
+CG with MPIL RMA Hier EB Pers Allreduce: 8.633127e+00
+crankseg_1.pm
+srun --ntasks-per-node 112 -N 1 ./cg /usr/workspace/bienz1/benchmark_mats/SPD/crankseg_1.pm
+Read matrix: 5.789284e-01
+Form comm: 8.812190e-04
+Running with Standard Neighbor Collectives
+CG + PMPI: 500 iter, norm 1.489749e-04
+CG with PMPI Allreduce: 1.261711e-01
+CG with PMPI Allreduce: 1.257554e-01
+CG with PMPI Allreduce: 1.258099e-01
+CG with PMPI Allreduce: 1.279232e-01
+CG with PMPI Allreduce: 1.272700e-01
+CG + MPIL RMA Hier Pers: 500 iter, norm 1.748240e-04
+CG with MPIL RMA Hier Pers Allreduce: 1.279856e-01
+CG with MPIL RMA Hier Pers Allreduce: 1.277701e-01
+CG with MPIL RMA Hier Pers Allreduce: 1.282371e-01
+CG with MPIL RMA Hier Pers Allreduce: 1.278732e-01
+CG with MPIL RMA Hier Pers Allreduce: 1.281803e-01
+CG + MPIL RMA Hier EB Pers: 500 iter, norm 1.748240e-04
+CG with MPIL RMA Hier EB Pers Allreduce: 1.281278e-01
+CG with MPIL RMA Hier EB Pers Allreduce: 1.284216e-01
+CG with MPIL RMA Hier EB Pers Allreduce: 1.285427e-01
+CG with MPIL RMA Hier EB Pers Allreduce: 1.285769e-01
+CG with MPIL RMA Hier EB Pers Allreduce: 1.287116e-01
+srun --ntasks-per-node 112 -N 2 ./cg /usr/workspace/bienz1/benchmark_mats/SPD/crankseg_1.pm
+Read matrix: 4.098450e-01
+Form comm: 1.762718e-01
+Running with Standard Neighbor Collectives
+CG + PMPI: 500 iter, norm 6.268004e-05
+CG with PMPI Allreduce: 1.134850e-01
+CG with PMPI Allreduce: 1.326202e-01
+CG with PMPI Allreduce: 1.130228e-01
+CG with PMPI Allreduce: 1.326285e-01
+CG with PMPI Allreduce: 1.131087e-01
+CG + MPIL RMA Hier Pers: 500 iter, norm 5.784649e-05
+CG with MPIL RMA Hier Pers Allreduce: 1.120490e-01
+CG with MPIL RMA Hier Pers Allreduce: 1.116924e-01
+CG with MPIL RMA Hier Pers Allreduce: 1.117802e-01
+CG with MPIL RMA Hier Pers Allreduce: 1.115189e-01
+CG with MPIL RMA Hier Pers Allreduce: 1.118817e-01
+CG + MPIL RMA Hier EB Pers: 500 iter, norm 5.784649e-05
+CG with MPIL RMA Hier EB Pers Allreduce: 1.115906e-01
+CG with MPIL RMA Hier EB Pers Allreduce: 1.316920e-01
+CG with MPIL RMA Hier EB Pers Allreduce: 1.119318e-01
+CG with MPIL RMA Hier EB Pers Allreduce: 1.116022e-01
+CG with MPIL RMA Hier EB Pers Allreduce: 1.119704e-01
+srun --ntasks-per-node 112 -N 4 ./cg /usr/workspace/bienz1/benchmark_mats/SPD/crankseg_1.pm
+Read matrix: 3.286267e-01
+Form comm: 3.733884e-01
+Running with Standard Neighbor Collectives
+CG + PMPI: 500 iter, norm 1.562305e-04
+CG with PMPI Allreduce: 6.146846e-01
+CG with PMPI Allreduce: 1.046386e+00
+CG with PMPI Allreduce: 5.127341e-01
+CG with PMPI Allreduce: 1.047780e+00
+CG with PMPI Allreduce: 3.988235e-01
+CG + MPIL RMA Hier Pers: 500 iter, norm 1.205910e-04
+CG with MPIL RMA Hier Pers Allreduce: 7.756057e-01
+CG with MPIL RMA Hier Pers Allreduce: 9.938287e-01
+CG with MPIL RMA Hier Pers Allreduce: 4.105318e-01
+CG with MPIL RMA Hier Pers Allreduce: 6.659819e-01
+CG with MPIL RMA Hier Pers Allreduce: 8.353730e-01
+CG + MPIL RMA Hier EB Pers: 500 iter, norm 1.205910e-04
+CG with MPIL RMA Hier EB Pers Allreduce: 9.380611e-01
+CG with MPIL RMA Hier EB Pers Allreduce: 1.102669e+00
+CG with MPIL RMA Hier EB Pers Allreduce: 4.503987e-01
+CG with MPIL RMA Hier EB Pers Allreduce: 7.724297e-01
+CG with MPIL RMA Hier EB Pers Allreduce: 9.334561e-01
+srun --ntasks-per-node 112 -N 8 ./cg /usr/workspace/bienz1/benchmark_mats/SPD/crankseg_1.pm
+Read matrix: 2.172215e-01
+Form comm: 6.481909e-01
+Running with Standard Neighbor Collectives
+CG + PMPI: 500 iter, norm 3.316778e-04
+CG with PMPI Allreduce: 5.043357e+01
+CG with PMPI Allreduce: 5.171953e+01
+CG with PMPI Allreduce: 4.820048e+01
+CG with PMPI Allreduce: 5.475529e+01
+CG with PMPI Allreduce: 4.851126e+01
+CG + MPIL RMA Hier Pers: 500 iter, norm 3.949224e-04
+CG with MPIL RMA Hier Pers Allreduce: 3.092428e+01
+CG with MPIL RMA Hier Pers Allreduce: 2.980547e+01
+CG with MPIL RMA Hier Pers Allreduce: 3.139274e+01
+CG with MPIL RMA Hier Pers Allreduce: 2.772708e+01
+CG with MPIL RMA Hier Pers Allreduce: 2.898405e+01
+CG + MPIL RMA Hier EB Pers: 500 iter, norm 3.949224e-04
+CG with MPIL RMA Hier EB Pers Allreduce: 2.883286e+01
+CG with MPIL RMA Hier EB Pers Allreduce: 3.188841e+01
+CG with MPIL RMA Hier EB Pers Allreduce: 2.993390e+01
+CG with MPIL RMA Hier EB Pers Allreduce: 3.108458e+01
+CG with MPIL RMA Hier EB Pers Allreduce: 2.850104e+01
+srun --ntasks-per-node 112 -N 16 ./cg /usr/workspace/bienz1/benchmark_mats/SPD/crankseg_1.pm
+Read matrix: 2.153552e-01
+Form comm: 7.933467e-01
+Running with Standard Neighbor Collectives
+CG + PMPI: 500 iter, norm 1.216080e-04
+CG with PMPI Allreduce: 2.311483e+00
+CG with PMPI Allreduce: 2.302950e+00
+CG with PMPI Allreduce: 2.463588e+00
+CG with PMPI Allreduce: 2.302540e+00
+CG with PMPI Allreduce: 1.684092e+00
+CG + MPIL RMA Hier Pers: 500 iter, norm 1.032824e-04
+CG with MPIL RMA Hier Pers Allreduce: 2.151151e+00
+CG with MPIL RMA Hier Pers Allreduce: 1.340314e+00
+CG with MPIL RMA Hier Pers Allreduce: 1.185897e+00
+CG with MPIL RMA Hier Pers Allreduce: 2.627643e+00
+CG with MPIL RMA Hier Pers Allreduce: 3.436132e+00
+CG + MPIL RMA Hier EB Pers: 500 iter, norm 1.032824e-04
+CG with MPIL RMA Hier EB Pers Allreduce: 1.509248e+00
+CG with MPIL RMA Hier EB Pers Allreduce: 3.129771e+00
+CG with MPIL RMA Hier EB Pers Allreduce: 1.670247e+00
+CG with MPIL RMA Hier EB Pers Allreduce: 1.663728e+00
+CG with MPIL RMA Hier EB Pers Allreduce: 1.190262e+00
+srun --ntasks-per-node 112 -N 32 ./cg /usr/workspace/bienz1/benchmark_mats/SPD/crankseg_1.pm
+Read matrix: 2.698038e-01
+Form comm: 1.188985e+00
+Running with Standard Neighbor Collectives
+CG + PMPI: 500 iter, norm 4.261205e-05
+CG with PMPI Allreduce: 6.341254e+00
+CG with PMPI Allreduce: 4.571597e+00
+CG with PMPI Allreduce: 6.505842e+00
+CG with PMPI Allreduce: 5.212255e+00
+CG with PMPI Allreduce: 5.055667e+00
+CG + MPIL RMA Hier Pers: 500 iter, norm 5.398606e-05
+CG with MPIL RMA Hier Pers Allreduce: 4.559592e+00
+CG with MPIL RMA Hier Pers Allreduce: 4.583898e+00
+CG with MPIL RMA Hier Pers Allreduce: 3.443645e+00
+CG with MPIL RMA Hier Pers Allreduce: 4.921198e+00
+CG with MPIL RMA Hier Pers Allreduce: 3.444808e+00
+CG + MPIL RMA Hier EB Pers: 500 iter, norm 5.398606e-05
+CG with MPIL RMA Hier EB Pers Allreduce: 3.453110e+00
+CG with MPIL RMA Hier EB Pers Allreduce: 3.763218e+00
+CG with MPIL RMA Hier EB Pers Allreduce: 6.167037e+00
+CG with MPIL RMA Hier EB Pers Allreduce: 4.763779e+00
+CG with MPIL RMA Hier EB Pers Allreduce: 3.590512e+00
+srun --ntasks-per-node 112 -N 64 ./cg /usr/workspace/bienz1/benchmark_mats/SPD/crankseg_1.pm
+Read matrix: 2.435216e-01
+Form comm: 1.801441e+00
+Running with Standard Neighbor Collectives
+CG + PMPI: 500 iter, norm 4.465138e-05
+CG with PMPI Allreduce: 4.508659e+00
+CG with PMPI Allreduce: 7.235118e+00
+CG with PMPI Allreduce: 8.828109e+00
+CG with PMPI Allreduce: 5.443095e+00
+CG with PMPI Allreduce: 5.439381e+00
+CG + MPIL RMA Hier Pers: 500 iter, norm 5.638626e-05
+CG with MPIL RMA Hier Pers Allreduce: 4.006724e+00
+CG with MPIL RMA Hier Pers Allreduce: 7.144143e+00
+CG with MPIL RMA Hier Pers Allreduce: 5.326277e+00
+CG with MPIL RMA Hier Pers Allreduce: 4.332845e+00
+CG with MPIL RMA Hier Pers Allreduce: 7.219443e+00
+CG + MPIL RMA Hier EB Pers: 500 iter, norm 5.638626e-05
+CG with MPIL RMA Hier EB Pers Allreduce: 4.166533e+00
+CG with MPIL RMA Hier EB Pers Allreduce: 5.811097e+00
+CG with MPIL RMA Hier EB Pers Allreduce: 5.946878e+00
+CG with MPIL RMA Hier EB Pers Allreduce: 4.668063e+00
+CG with MPIL RMA Hier EB Pers Allreduce: 6.428589e+00
+crankseg_2.pm
+srun --ntasks-per-node 112 -N 1 ./cg /usr/workspace/bienz1/benchmark_mats/SPD/crankseg_2.pm
+Read matrix: 8.187303e-01
+Form comm: 9.205140e-04
+Running with Standard Neighbor Collectives
+CG + PMPI: 500 iter, norm 6.460070e-05
+CG with PMPI Allreduce: 1.656295e-01
+CG with PMPI Allreduce: 1.654425e-01
+CG with PMPI Allreduce: 1.744347e-01
+CG with PMPI Allreduce: 1.740636e-01
+CG with PMPI Allreduce: 1.759695e-01
+CG + MPIL RMA Hier Pers: 500 iter, norm 7.823047e-05
+CG with MPIL RMA Hier Pers Allreduce: 1.769203e-01
+CG with MPIL RMA Hier Pers Allreduce: 1.773904e-01
+CG with MPIL RMA Hier Pers Allreduce: 1.771866e-01
+CG with MPIL RMA Hier Pers Allreduce: 1.772133e-01
+CG with MPIL RMA Hier Pers Allreduce: 1.771473e-01
+CG + MPIL RMA Hier EB Pers: 500 iter, norm 7.823047e-05
+CG with MPIL RMA Hier EB Pers Allreduce: 1.775844e-01
+CG with MPIL RMA Hier EB Pers Allreduce: 1.771628e-01
+CG with MPIL RMA Hier EB Pers Allreduce: 1.772515e-01
+CG with MPIL RMA Hier EB Pers Allreduce: 1.774080e-01
+CG with MPIL RMA Hier EB Pers Allreduce: 1.772057e-01
+srun --ntasks-per-node 112 -N 2 ./cg /usr/workspace/bienz1/benchmark_mats/SPD/crankseg_2.pm
+Read matrix: 5.720143e-01
+Form comm: 2.031311e-01
+Running with Standard Neighbor Collectives
+CG + PMPI: 500 iter, norm 5.304372e-05
+CG with PMPI Allreduce: 1.417508e-01
+CG with PMPI Allreduce: 1.411541e-01
+CG with PMPI Allreduce: 1.412483e-01
+CG with PMPI Allreduce: 1.680593e-01
+CG with PMPI Allreduce: 1.413067e-01
+CG + MPIL RMA Hier Pers: 500 iter, norm 6.442632e-05
+CG with MPIL RMA Hier Pers Allreduce: 1.641956e-01
+CG with MPIL RMA Hier Pers Allreduce: 2.098869e-01
+CG with MPIL RMA Hier Pers Allreduce: 1.413891e-01
+CG with MPIL RMA Hier Pers Allreduce: 1.643181e-01
+CG with MPIL RMA Hier Pers Allreduce: 1.413198e-01
+CG + MPIL RMA Hier EB Pers: 500 iter, norm 6.442632e-05
+CG with MPIL RMA Hier EB Pers Allreduce: 1.642091e-01
+CG with MPIL RMA Hier EB Pers Allreduce: 1.642029e-01
+CG with MPIL RMA Hier EB Pers Allreduce: 1.647556e-01
+CG with MPIL RMA Hier EB Pers Allreduce: 1.642025e-01
+CG with MPIL RMA Hier EB Pers Allreduce: 1.413486e-01
+srun --ntasks-per-node 112 -N 4 ./cg /usr/workspace/bienz1/benchmark_mats/SPD/crankseg_2.pm
+Read matrix: 4.049012e-01
+Form comm: 4.105539e-01
+Running with Standard Neighbor Collectives
+CG + PMPI: 500 iter, norm 4.590416e-05
+CG with PMPI Allreduce: 6.135348e+01
+CG with PMPI Allreduce: 5.669419e+01
+CG with PMPI Allreduce: 5.542758e+01
+CG with PMPI Allreduce: 6.278581e+01
+CG with PMPI Allreduce: 7.349056e+01
+CG + MPIL RMA Hier Pers: 500 iter, norm 2.546606e-04
+CG with MPIL RMA Hier Pers Allreduce: 6.681079e+01
+CG with MPIL RMA Hier Pers Allreduce: 5.992273e+01
+CG with MPIL RMA Hier Pers Allreduce: 7.798771e+01
+CG with MPIL RMA Hier Pers Allreduce: 6.041394e+01
+CG with MPIL RMA Hier Pers Allreduce: 6.458173e+01
+CG + MPIL RMA Hier EB Pers: 500 iter, norm 2.546606e-04
+CG with MPIL RMA Hier EB Pers Allreduce: 7.728633e+01
+CG with MPIL RMA Hier EB Pers Allreduce: 6.841374e+01
+CG with MPIL RMA Hier EB Pers Allreduce: 6.672329e+01
+CG with MPIL RMA Hier EB Pers Allreduce: 5.881121e+01
+CG with MPIL RMA Hier EB Pers Allreduce: 6.921607e+01
+srun --ntasks-per-node 112 -N 8 ./cg /usr/workspace/bienz1/benchmark_mats/SPD/crankseg_2.pm
+Read matrix: 2.986790e-01
+Form comm: 7.388164e-01
+Running with Standard Neighbor Collectives
+CG + PMPI: 500 iter, norm 6.185461e-05
+CG with PMPI Allreduce: 7.709144e+01
+CG with PMPI Allreduce: 7.439536e+01
+CG with PMPI Allreduce: 7.689693e+01
+CG with PMPI Allreduce: 7.512196e+01
+CG with PMPI Allreduce: 7.593484e+01
+CG + MPIL RMA Hier Pers: 500 iter, norm 7.369091e-05
+CG with MPIL RMA Hier Pers Allreduce: 6.444576e+01
+CG with MPIL RMA Hier Pers Allreduce: 6.109674e+01
+CG with MPIL RMA Hier Pers Allreduce: 6.534295e+01
+CG with MPIL RMA Hier Pers Allreduce: 6.350116e+01
+CG with MPIL RMA Hier Pers Allreduce: 6.687907e+01
+CG + MPIL RMA Hier EB Pers: 500 iter, norm 7.369091e-05
+CG with MPIL RMA Hier EB Pers Allreduce: 6.427972e+01
+CG with MPIL RMA Hier EB Pers Allreduce: 6.426310e+01
+CG with MPIL RMA Hier EB Pers Allreduce: 6.331454e+01
+CG with MPIL RMA Hier EB Pers Allreduce: 6.285284e+01
+CG with MPIL RMA Hier EB Pers Allreduce: 6.507523e+01
+srun --ntasks-per-node 112 -N 16 ./cg /usr/workspace/bienz1/benchmark_mats/SPD/crankseg_2.pm
+Read matrix: 1.743306e-01
+Form comm: 8.491721e-01
+Running with Standard Neighbor Collectives
+CG + PMPI: 500 iter, norm 2.946093e-04
+CG with PMPI Allreduce: 4.567248e+00
+CG with PMPI Allreduce: 5.065682e+00
+CG with PMPI Allreduce: 5.062048e+00
+CG with PMPI Allreduce: 4.102643e+00
+CG with PMPI Allreduce: 4.556628e+00
+CG + MPIL RMA Hier Pers: 500 iter, norm 2.921306e-04
+CG with MPIL RMA Hier Pers Allreduce: 2.196904e+00
+CG with MPIL RMA Hier Pers Allreduce: 3.944845e+00
+CG with MPIL RMA Hier Pers Allreduce: 2.807985e+00
+CG with MPIL RMA Hier Pers Allreduce: 1.521645e+00
+CG with MPIL RMA Hier Pers Allreduce: 4.086280e+00
+CG + MPIL RMA Hier EB Pers: 500 iter, norm 2.921306e-04
+CG with MPIL RMA Hier EB Pers Allreduce: 4.092027e+00
+CG with MPIL RMA Hier EB Pers Allreduce: 3.364818e+00
+CG with MPIL RMA Hier EB Pers Allreduce: 2.512425e+00
+CG with MPIL RMA Hier EB Pers Allreduce: 3.142903e+00
+CG with MPIL RMA Hier EB Pers Allreduce: 5.052915e+00
+srun --ntasks-per-node 112 -N 32 ./cg /usr/workspace/bienz1/benchmark_mats/SPD/crankseg_2.pm
+Read matrix: 2.183316e-01
+Form comm: 1.246441e+00
+Running with Standard Neighbor Collectives
+CG + PMPI: 500 iter, norm 3.816168e-04
+CG with PMPI Allreduce: 4.542758e+00
+CG with PMPI Allreduce: 5.300334e+00
+CG with PMPI Allreduce: 5.799409e+00
+CG with PMPI Allreduce: 5.799487e+00
+CG with PMPI Allreduce: 4.357981e+00
+CG + MPIL RMA Hier Pers: 500 iter, norm 2.172032e-04
+CG with MPIL RMA Hier Pers Allreduce: 7.275922e+00
+CG with MPIL RMA Hier Pers Allreduce: 4.545740e+00
+CG with MPIL RMA Hier Pers Allreduce: 6.485937e+00
+CG with MPIL RMA Hier Pers Allreduce: 5.329417e+00
+CG with MPIL RMA Hier Pers Allreduce: 7.117026e+00
+CG + MPIL RMA Hier EB Pers: 500 iter, norm 2.172032e-04
+CG with MPIL RMA Hier EB Pers Allreduce: 5.178299e+00
+CG with MPIL RMA Hier EB Pers Allreduce: 6.290858e+00
+CG with MPIL RMA Hier EB Pers Allreduce: 5.500495e+00
+CG with MPIL RMA Hier EB Pers Allreduce: 5.505128e+00
+CG with MPIL RMA Hier EB Pers Allreduce: 3.888338e+00
+srun --ntasks-per-node 112 -N 64 ./cg /usr/workspace/bienz1/benchmark_mats/SPD/crankseg_2.pm
+Read matrix: 1.268596e-01
+Form comm: 2.166924e+00
+Running with Standard Neighbor Collectives
+CG + PMPI: 500 iter, norm 3.857095e-05
+CG with PMPI Allreduce: 1.320642e+01
+CG with PMPI Allreduce: 1.160671e+01
+CG with PMPI Allreduce: 1.369450e+01
+CG with PMPI Allreduce: 1.147119e+01
+CG with PMPI Allreduce: 1.135519e+01
+CG + MPIL RMA Hier Pers: 500 iter, norm 3.303627e-05
+CG with MPIL RMA Hier Pers Allreduce: 9.542749e+00
+CG with MPIL RMA Hier Pers Allreduce: 1.593215e+01
+CG with MPIL RMA Hier Pers Allreduce: 1.514877e+01
+CG with MPIL RMA Hier Pers Allreduce: 1.275289e+01
+CG with MPIL RMA Hier Pers Allreduce: 1.197682e+01
+CG + MPIL RMA Hier EB Pers: 500 iter, norm 3.303627e-05
+CG with MPIL RMA Hier EB Pers Allreduce: 1.228542e+01
+CG with MPIL RMA Hier EB Pers Allreduce: 2.030906e+01
+CG with MPIL RMA Hier EB Pers Allreduce: 1.177369e+01
+CG with MPIL RMA Hier EB Pers Allreduce: 1.708531e+01
+CG with MPIL RMA Hier EB Pers Allreduce: 1.369688e+01
+m_t1.pm
+srun --ntasks-per-node 112 -N 1 ./cg /usr/workspace/bienz1/benchmark_mats/SPD/m_t1.pm
+Read matrix: 6.097679e-01
+Form comm: 7.324000e-04
+Running with Standard Neighbor Collectives
+CG + PMPI: 500 iter, norm 1.613027e-04
+CG with PMPI Allreduce: 4.178925e-02
+CG with PMPI Allreduce: 4.168234e-02
+CG with PMPI Allreduce: 4.327774e-02
+CG with PMPI Allreduce: 4.328722e-02
+CG with PMPI Allreduce: 4.330118e-02
+CG + MPIL RMA Hier Pers: 500 iter, norm 1.609546e-04
+CG with MPIL RMA Hier Pers Allreduce: 4.298803e-02
+CG with MPIL RMA Hier Pers Allreduce: 4.309357e-02
+CG with MPIL RMA Hier Pers Allreduce: 4.307802e-02
+CG with MPIL RMA Hier Pers Allreduce: 4.315382e-02
+CG with MPIL RMA Hier Pers Allreduce: 4.321226e-02
+CG + MPIL RMA Hier EB Pers: 500 iter, norm 1.609546e-04
+CG with MPIL RMA Hier EB Pers Allreduce: 4.326044e-02
+CG with MPIL RMA Hier EB Pers Allreduce: 4.322433e-02
+CG with MPIL RMA Hier EB Pers Allreduce: 4.327070e-02
+CG with MPIL RMA Hier EB Pers Allreduce: 4.328977e-02
+CG with MPIL RMA Hier EB Pers Allreduce: 4.330902e-02
+srun --ntasks-per-node 112 -N 2 ./cg /usr/workspace/bienz1/benchmark_mats/SPD/m_t1.pm
+Read matrix: 3.391296e-01
+Form comm: 6.107759e-03
+Running with Standard Neighbor Collectives
+CG + PMPI: 500 iter, norm 1.668208e-04
+CG with PMPI Allreduce: 3.583950e-02
+CG with PMPI Allreduce: 3.581376e-02
+CG with PMPI Allreduce: 3.642947e-02
+CG with PMPI Allreduce: 3.643843e-02
+CG with PMPI Allreduce: 3.649341e-02
+CG + MPIL RMA Hier Pers: 500 iter, norm 1.599670e-04
+CG with MPIL RMA Hier Pers Allreduce: 3.589427e-02
+CG with MPIL RMA Hier Pers Allreduce: 3.587156e-02
+CG with MPIL RMA Hier Pers Allreduce: 3.603705e-02
+CG with MPIL RMA Hier Pers Allreduce: 3.589063e-02
+CG with MPIL RMA Hier Pers Allreduce: 3.593117e-02
+CG + MPIL RMA Hier EB Pers: 500 iter, norm 1.599670e-04
+CG with MPIL RMA Hier EB Pers Allreduce: 3.601264e-02
+CG with MPIL RMA Hier EB Pers Allreduce: 3.602353e-02
+CG with MPIL RMA Hier EB Pers Allreduce: 3.603748e-02
+CG with MPIL RMA Hier EB Pers Allreduce: 3.590933e-02
+CG with MPIL RMA Hier EB Pers Allreduce: 3.596507e-02
+srun --ntasks-per-node 112 -N 4 ./cg /usr/workspace/bienz1/benchmark_mats/SPD/m_t1.pm
+Read matrix: 2.632163e-01
+Form comm: 1.662239e-02
+Running with Standard Neighbor Collectives
+CG + PMPI: 500 iter, norm 1.570384e-04
+CG with PMPI Allreduce: 3.843009e-02
+CG with PMPI Allreduce: 3.741419e-02
+CG with PMPI Allreduce: 3.866252e-02
+CG with PMPI Allreduce: 3.510867e-02
+CG with PMPI Allreduce: 3.585951e-02
+CG + MPIL RMA Hier Pers: 500 iter, norm 1.613885e-04
+CG with MPIL RMA Hier Pers Allreduce: 3.827603e-02
+CG with MPIL RMA Hier Pers Allreduce: 3.623626e-02
+CG with MPIL RMA Hier Pers Allreduce: 3.556667e-02
+CG with MPIL RMA Hier Pers Allreduce: 3.593321e-02
+CG with MPIL RMA Hier Pers Allreduce: 3.816704e-02
+CG + MPIL RMA Hier EB Pers: 500 iter, norm 1.613885e-04
+CG with MPIL RMA Hier EB Pers Allreduce: 3.747546e-02
+CG with MPIL RMA Hier EB Pers Allreduce: 3.753238e-02
+CG with MPIL RMA Hier EB Pers Allreduce: 3.737581e-02
+CG with MPIL RMA Hier EB Pers Allreduce: 3.767450e-02
+CG with MPIL RMA Hier EB Pers Allreduce: 3.796104e-02
+srun --ntasks-per-node 112 -N 8 ./cg /usr/workspace/bienz1/benchmark_mats/SPD/m_t1.pm
+Read matrix: 1.241087e-01
+Form comm: 5.956314e-02
+Running with Standard Neighbor Collectives
+CG + PMPI: 500 iter, norm 1.571282e-04
+CG with PMPI Allreduce: 4.179808e-02
+CG with PMPI Allreduce: 4.168102e-02
+CG with PMPI Allreduce: 4.119698e-02
+CG with PMPI Allreduce: 4.136209e-02
+CG with PMPI Allreduce: 4.222074e-02
+CG + MPIL RMA Hier Pers: 500 iter, norm 1.674355e-04
+CG with MPIL RMA Hier Pers Allreduce: 4.179853e-02
+CG with MPIL RMA Hier Pers Allreduce: 4.099442e-02
+CG with MPIL RMA Hier Pers Allreduce: 4.061038e-02
+CG with MPIL RMA Hier Pers Allreduce: 4.036094e-02
+CG with MPIL RMA Hier Pers Allreduce: 4.141827e-02
+CG + MPIL RMA Hier EB Pers: 500 iter, norm 1.674355e-04
+CG with MPIL RMA Hier EB Pers Allreduce: 4.417492e-02
+CG with MPIL RMA Hier EB Pers Allreduce: 4.081080e-02
+CG with MPIL RMA Hier EB Pers Allreduce: 4.196695e-02
+CG with MPIL RMA Hier EB Pers Allreduce: 4.023683e-02
+CG with MPIL RMA Hier EB Pers Allreduce: 4.197692e-02
+srun --ntasks-per-node 112 -N 16 ./cg /usr/workspace/bienz1/benchmark_mats/SPD/m_t1.pm
+Read matrix: 1.617146e-01
+Form comm: 1.049667e-01
+Running with Standard Neighbor Collectives
+CG + PMPI: 500 iter, norm 1.713240e-04
+CG with PMPI Allreduce: 4.954465e-02
+CG with PMPI Allreduce: 4.823556e-02
+CG with PMPI Allreduce: 4.761386e-02
+CG with PMPI Allreduce: 6.359049e-02
+CG with PMPI Allreduce: 4.847927e-02
+CG + MPIL RMA Hier Pers: 500 iter, norm 1.722004e-04
+CG with MPIL RMA Hier Pers Allreduce: 4.954566e-02
+CG with MPIL RMA Hier Pers Allreduce: 4.814342e-02
+CG with MPIL RMA Hier Pers Allreduce: 4.901398e-02
+CG with MPIL RMA Hier Pers Allreduce: 6.957222e-02
+CG with MPIL RMA Hier Pers Allreduce: 4.883419e-02
+CG + MPIL RMA Hier EB Pers: 500 iter, norm 1.722004e-04
+CG with MPIL RMA Hier EB Pers Allreduce: 6.693306e-02
+CG with MPIL RMA Hier EB Pers Allreduce: 4.924353e-02
+CG with MPIL RMA Hier EB Pers Allreduce: 4.974209e-02
+CG with MPIL RMA Hier EB Pers Allreduce: 5.008710e-02
+CG with MPIL RMA Hier EB Pers Allreduce: 4.999822e-02
+srun --ntasks-per-node 112 -N 32 ./cg /usr/workspace/bienz1/benchmark_mats/SPD/m_t1.pm
+Read matrix: 2.596139e-01
+Form comm: 1.620220e-01
+Running with Standard Neighbor Collectives
+CG + PMPI: 500 iter, norm 1.600216e-04
+CG with PMPI Allreduce: 5.607842e-02
+CG with PMPI Allreduce: 7.613461e-02
+CG with PMPI Allreduce: 6.777439e-02
+CG with PMPI Allreduce: 5.527456e-02
+CG with PMPI Allreduce: 6.488285e-02
+CG + MPIL RMA Hier Pers: 500 iter, norm 1.660793e-04
+CG with MPIL RMA Hier Pers Allreduce: 7.730543e-02
+CG with MPIL RMA Hier Pers Allreduce: 5.595346e-02
+CG with MPIL RMA Hier Pers Allreduce: 5.738041e-02
+CG with MPIL RMA Hier Pers Allreduce: 5.318902e-02
+CG with MPIL RMA Hier Pers Allreduce: 5.422432e-02
+CG + MPIL RMA Hier EB Pers: 500 iter, norm 1.660793e-04
+CG with MPIL RMA Hier EB Pers Allreduce: 5.450273e-02
+CG with MPIL RMA Hier EB Pers Allreduce: 6.372835e-02
+CG with MPIL RMA Hier EB Pers Allreduce: 6.688052e-02
+CG with MPIL RMA Hier EB Pers Allreduce: 6.844820e-02
+CG with MPIL RMA Hier EB Pers Allreduce: 5.736029e-02
+srun --ntasks-per-node 112 -N 64 ./cg /usr/workspace/bienz1/benchmark_mats/SPD/m_t1.pm
+Read matrix: 1.857092e-01
+Form comm: 2.500571e-01

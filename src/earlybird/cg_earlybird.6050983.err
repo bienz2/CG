@@ -1,0 +1,8 @@
+srun: Job step aborted: Waiting up to 62 seconds for job step to finish.
+[2026-05-18T16:20:31.017] error: *** STEP 6050983.27 ON dane129 CANCELLED AT 2026-05-18T16:20:31 DUE TO TIME LIMIT ***
+[2026-05-18T16:20:31.019] error: *** JOB 6050983 ON dane129 CANCELLED AT 2026-05-18T16:20:31 DUE TO TIME LIMIT ***
+srun: error: dane1352: tasks 6608-6719: Terminated
+srun: error: dane358: tasks 1568-1679: Terminated
+srun: error: dane301: tasks 1232-1343: Terminated
+srun: error: dane1177: tasks 5600-5711: Terminated
+srun: error: dane693: tasks 3920-4031: Terminated
